@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combo Sản Phẩm Tiết Kiệm | VeriGlow Cosmetics</title>
+
+    <!-- Thư viện CSS Bootstrap & FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Tùy chỉnh hệ thống -->
+    <style>
+        :root {
+            --vg-pink-main: #f06292;
+            --vg-pink-light: #f8bbd0;
+            --vg-pink-lightest: #fce4ec;
+            --vg-pink-soft: #ffb6c1;
+            --vg-pink-dark: #d81b60;
+            --vg-gold: #ffb300;
+            --text-main: #333333;
+            --text-muted: #6c757d;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #fcfcfc;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .brand-font { font-family: 'Playfair Display', serif; }
+
+        /* Utility */
+        .text-pink-main { color: var(--vg-pink-main) !important; }
+        .text-pink-dark { color: var(--vg-pink-dark) !important; }
+        .bg-pink-lightest { background-color: var(--vg-pink-lightest) !important; }
+
+        /* Nút bấm */
+        .btn-veriglow {
+            background-color: var(--vg-pink-main);
+            color: white;
+            font-weight: 700;
+            padding: 10px 24px;
+            border-radius: 30px;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(240, 98, 146, 0.2);
+        }
+        .btn-veriglow:hover {
+            background-color: var(--vg-pink-dark);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(216, 27, 96, 0.3);
+        }
+        .btn-outline-veriglow {
+            border: 2px solid var(--vg-pink-main);
+            color: var(--vg-pink-dark);
+            background: transparent;
+            font-weight: 700;
+            border-radius: 30px;
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+        }
+        .btn-outline-veriglow:hover, .btn-outline-veriglow.active {
+            background: var(--vg-pink-main);
+            color: white;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        .nav-link {
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0 10px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--vg-pink-dark) !important;
+        }
+
+        /* Hero Banner */
+        .combo-hero {
+            background: linear-gradient(135deg, #fce4ec 0%, #f8bbd0 100%);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 2px solid var(--vg-pink-main);
+        }
+        .combo-hero::after {
+            content: "\f06b";
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            position: absolute;
+            font-size: 300px;
+            color: rgba(255,255,255,0.3);
+            right: -50px;
+            bottom: -80px;
+            transform: rotate(-15deg);
+        }
+
+        /* Combo Cards */
+        .combo-card {
+            background: white;
+            border-radius: 16px;
+            border: 1px solid var(--vg-pink-lightest);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.04);
+            overflow: hidden;
+            height: 100%;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+        .combo-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--vg-pink-main);
+            box-shadow: 0 15px 30px rgba(240, 98, 146, 0.15);
+        }
+        .combo-img-wrapper {
+            position: relative;
+            height: 280px;
+            background-color: #fefefe;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            border-bottom: 1px solid var(--vg-pink-lightest);
+        }
+        .combo-img-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            transition: transform 0.5s ease;
+        }
+        .combo-card:hover .combo-img-wrapper img {
+            transform: scale(1.05);
+        }
+        
+        /* Ribbons & Badges */
+        .ribbon-promo {
+            position: absolute;
+            top: 15px;
+            right: -10px;
+            background: var(--vg-gold);
+            color: #fff;
+            padding: 5px 15px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            border-radius: 20px 0 0 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            z-index: 2;
+            text-transform: uppercase;
+        }
+        .ribbon-promo::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            right: 0;
+            border-top: 10px solid #c58a00;
+            border-right: 10px solid transparent;
+        }
+        .ribbon-gift {
+            background: var(--vg-pink-dark);
+        }
+        .ribbon-gift::after {
+            border-top-color: #9e1245;
+        }
+
+        .combo-brand-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255,255,255,0.9);
+            color: var(--vg-pink-dark);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            z-index: 2;
+        }
+
+        .combo-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 280px);
+        }
+        .combo-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .combo-includes {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+        .combo-includes ul {
+            padding-left: 15px;
+            margin-bottom: 0;
+        }
+        .combo-includes li {
+            margin-bottom: 5px;
+        }
+        .combo-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px dashed var(--vg-pink-light);
+        }
+        .combo-price {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--vg-pink-dark);
+        }
+
+        /* Modal Chi tiết */
+        .modal-header-custom {
+            background: linear-gradient(135deg, var(--vg-pink-dark) 0%, var(--vg-pink-main) 100%);
+            color: white;
+            border-bottom: none;
+        }
+        .detail-img-box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--vg-pink-lightest);
+            text-align: center;
+        }
+        .detail-img-box img {
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+            object-fit: contain;
+        }
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--vg-pink-dark);
+            font-weight: 700;
+            border-bottom: 2px solid var(--vg-pink-lightest);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+
+        /* Toast Notification */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1055;
+        }
+        .custom-toast {
+            background: white;
+            border-left: 5px solid var(--vg-pink-main);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #fff;
+            border-top: 1px solid #eaeaea;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+        .footer-heading {
+            font-weight: 800;
+            color: var(--vg-pink-dark);
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--vg-pink-main);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand text-pink-dark brand-font fs-3 fw-bold" href="index.html">
+                <i class="fas fa-leaf text-pink-main me-2"></i>VeriGlow
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Sản Phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link active text-pink-dark" href="combos.html">Combo Ưu Đãi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Liên Hệ</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="#" class="text-dark fs-5"><i class="fas fa-search"></i></a>
+                    <a href="javascript:void(0)" class="text-dark fs-5 position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
+                        <i class="fas fa-shopping-bag text-pink-dark"></i>
+                        <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.65rem;">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <section class="combo-hero text-center">
+        <div class="container position-relative" style="z-index: 1;">
+            <span class="badge bg-pink-dark text-white mb-3 px-3 py-2 fs-6 animate__animated animate__fadeInDown">SPECIAL OFFERS</span>
+            <h1 class="display-4 brand-font fw-bold text-dark mb-3 animate__animated animate__fadeInUp">Combo Skincare Tiết Kiệm</h1>
+            <p class="lead text-dark fw-bold mb-0 w-75 mx-auto animate__animated animate__fadeInUp animate__delay-1s">
+                Giải pháp chăm sóc da toàn diện từ VeriGlow. Mua theo bộ để tối ưu hiệu quả và nhận ngay những phần quà tặng độc quyền cực hấp dẫn!
+            </p>
+        </div>
+    </section>
+
+    <!-- Benefit Section -->
+    <section class="py-5 bg-white border-bottom">
+        <div class="container">
+            <div class="row text-center g-4">
+                <div class="col-md-4">
+                    <i class="fas fa-wallet text-pink-main fs-1 mb-3"></i>
+                    <h5 class="fw-bold">Tiết Kiệm Tối Đa</h5>
+                    <p class="text-muted small">Giá mua combo luôn rẻ hơn so với mua lẻ từng sản phẩm. Tối ưu ngân sách làm đẹp.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-gift text-pink-main fs-1 mb-3"></i>
+                    <h5 class="fw-bold">Quà Tặng Độc Quyền</h5>
+                    <p class="text-muted small">Nhận ngay các sản phẩm fullsize hoặc minisize giá trị cao khi chốt đơn combo.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="fas fa-layer-group text-pink-main fs-1 mb-3"></i>
+                    <h5 class="fw-bold">Chu Trình Hoàn Hảo</h5>
+                    <p class="text-muted small">Các sản phẩm trong bộ được chuyên gia da liễu phối hợp để mang lại hiệu quả cao nhất.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter & Grid Section -->
+    <section class="py-5 bg-pink-lightest">
+        <div class="container">
+            <!-- Filter Buttons -->
+            <div class="d-flex flex-wrap justify-content-center gap-3 mb-5" id="filter-buttons">
+                <button class="btn btn-outline-veriglow active" onclick="filterCombos('All', this)">Tất cả Combo</button>
+                <button class="btn btn-outline-veriglow" onclick="filterCombos('Cocoon', this)">Cocoon</button>
+                <button class="btn btn-outline-veriglow" onclick="filterCombos('La Roche-Posay', this)">La Roche-Posay</button>
+                <button class="btn btn-outline-veriglow" onclick="filterCombos('L\'Oréal Paris', this)">L'Oréal Paris</button>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="row g-4" id="combo-grid">
+                <!-- Data will be rendered here by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="brand-font text-pink-dark fw-bold mb-3"><i class="fas fa-leaf text-pink-main me-2"></i>VeriGlow</h4>
+                    <p class="text-muted small pe-lg-4">Uy tín tạo niềm tin, Minh bạch dựng vẻ đẹp. Cung cấp các combo chăm sóc da toàn diện chính hãng với giá trị tốt nhất.</p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0 footer-links">
+                    <h5 class="footer-heading fs-6">Danh Mục</h5>
+                    <a href="#">Sản Phẩm</a>
+                    <a href="#">Combo Khuyến Mãi</a>
+                    <a href="#">Blog Làm Đẹp</a>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0 footer-links">
+                    <h5 class="footer-heading fs-6">Hỗ Trợ Khách Hàng</h5>
+                    <a href="#">Chính sách đổi trả</a>
+                    <a href="#">Chính sách bảo mật</a>
+                    <a href="#">FAQ</a>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="footer-heading fs-6">Kết Nối</h5>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-pink-main fs-4"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-pink-main fs-4"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-pink-main fs-4"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4 pt-3 border-top">
+                <div class="col-12 text-center text-muted small">
+                    <p class="mb-0">&copy; 2026 VeriGlow Cosmetics. Đã đăng ký Bản quyền.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL CHI TIẾT COMBO -->
+    <div class="modal fade" id="comboDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content rounded-4 border-0 overflow-hidden shadow-lg">
+                <div class="modal-header modal-header-custom p-4">
+                    <div>
+                        <span class="badge bg-white text-pink-dark mb-2" id="modal-brand">Brand</span>
+                        <h4 class="modal-title brand-font fw-bold mb-0" id="modal-title">Tên Combo</h4>
+                    </div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4 p-md-5 bg-white">
+                    <div class="row g-5">
+                        <div class="col-lg-5">
+                            <div class="detail-img-box position-relative h-100 d-flex align-items-center justify-content-center">
+                                <div id="modal-ribbon" class="ribbon-promo fs-6 px-4 py-2" style="top: 20px; right: -15px;"></div>
+                                <img id="modal-img" src="" alt="Combo Image">
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="d-flex align-items-center justify-content-between mb-4 bg-pink-lightest p-3 rounded-3 border border-pink-soft">
+                                <div>
+                                    <span class="text-muted small d-block mb-1">Giá Ưu Đãi:</span>
+                                    <h2 class="fw-bold text-pink-dark mb-0" id="modal-price">0đ</h2>
+                                </div>
+                                <button id="modal-add-cart-btn" class="btn btn-veriglow px-4 py-2 fs-5"><i class="fas fa-cart-plus me-2"></i> MUA COMBO</button>
+                            </div>
+
+                            <h5 class="section-title"><i class="fas fa-box-open me-2"></i> Combo Bao Gồm:</h5>
+                            <ul class="mb-4" id="modal-includes" style="line-height: 1.8;">
+                                <!-- Rendered by JS -->
+                            </ul>
+
+                            <h5 class="section-title"><i class="fas fa-star me-2"></i> Thành Phần Chính:</h5>
+                            <p class="mb-4 text-dark fw-semibold" id="modal-ingredients"></p>
+
+                            <h5 class="section-title"><i class="fas fa-heart me-2"></i> Công Dụng Cốt Lõi:</h5>
+                            <p class="mb-0 text-muted" id="modal-desc" style="text-align: justify;"></p>
+                            
+                            <div class="mt-4 text-end">
+                                <small class="text-muted font-italic">Nguồn thông tin tham khảo:[cite: 2]</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL GIỎ HÀNG -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-right" style="margin: 0 0 0 auto; max-width: 450px; height: 100%;">
+            <div class="modal-content border-0 h-100 rounded-0">
+                <div class="modal-header bg-pink-lightest border-0 py-4">
+                    <h5 class="modal-title fw-bold brand-font text-pink-dark">
+                        <i class="fas fa-shopping-cart me-2"></i> Giỏ Hàng (<span id="cart-count-header">0</span>)
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body bg-white" id="cart-body">
+                    <p class="text-center text-muted my-5">Giỏ hàng của bạn đang trống.</p>
+                </div>
+                <div class="modal-footer flex-column bg-light border-0 p-4">
+                    <div class="d-flex justify-content-between w-100 mb-3">
+                        <span class="fw-bold fs-5">Tổng tiền:</span>
+                        <span class="fw-bold text-pink-dark fs-4" id="cart-total">0đ</span>
+                    </div>
+                    <button type="button" class="btn btn-veriglow w-100 py-3 fs-5 shadow" onclick="checkout()">TIẾN HÀNH THANH TOÁN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div class="toast-container">
+        <div id="cartToast" class="toast custom-toast align-items-center text-dark border-0 p-2" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body fw-bold">
+                    <i class="fas fa-check-circle text-success me-2 fs-5"></i> <span id="toast-msg">Đã thêm vào giỏ hàng!</span>
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thư viện JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        /* 
+         * DATA TỪ TÀI LIỆU YÊU CẦU ("combo sp.docx") 
+         * Tất cả nội dung được trích xuất và bám sát vào document được cấp.
+         */
+        const combosData = [
+            {
+                id: 1,
+                brand: "Cocoon",
+                name: "Bộ Ba Dưỡng Tóc Bưởi Mềm Mượt & Giảm Gãy Rụng (Cocoon x VeriGlow)[cite: 2]",
+                price: 460000,
+                promoText: "TẶNG 165K",
+                promoType: "gift",
+                image: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=600&auto=format&fit=crop", 
+                ingredients: "Tinh dầu bưởi nguyên chất[cite: 2]",
+                includes: [
+                    "Dầu gội bưởi Cocoon (310ml)[cite: 2]",
+                    "Dầu xả bưởi Cocoon (310ml)[cite: 2]",
+                    "Nước dưỡng tóc tinh dầu bưởi cải tiến mới (140ml)[cite: 2]"
+                ],
+                desc: "Giúp giảm gãy rụng, kích thích mọc tóc và làm tóc mềm mượt tự nhiên mà không gây bết dính. Chương trình ưu đãi tặng kèm Nước dưỡng tóc 140ml trị giá 165.000đ (cải tiến mới: tăng mềm mượt, giảm bết dính).[cite: 2]"
+            },
+            {
+                id: 2,
+                brand: "Cocoon",
+                name: "Bộ Làm Sạch Chuyên Sâu & Phục Hồi Đa Nhiệm[cite: 2]",
+                price: 520000, // Ước tính giá hiển thị
+                promoText: "MUA 1 TẶNG 1",
+                promoType: "promo",
+                image: "https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=600&auto=format&fit=crop",
+                ingredients: "Chiết xuất Nghệ Hưng Yên, Bí Đao, Sen Hậu Giang, Cà Phê[cite: 2]",
+                includes: [
+                    "Sữa rửa mặt nghệ Hưng Yên[cite: 2]",
+                    "Nước tẩy trang bí đao[cite: 2]",
+                    "Gel bí đao rửa mặt[cite: 2]",
+                    "Nước sen Hậu Giang[cite: 2]",
+                    "Dầu dưỡng / Tinh chất phục hồi & Tẩy tế bào chết cà phê[cite: 2]"
+                ],
+                desc: "Làm sạch sâu bụi bẩn và dầu thừa, thông thoáng lỗ chân lông, hỗ trợ phục hồi làn da nhạy cảm hoặc đang tổn thương. Chương trình đặc biệt: MUA 1 TẶNG KÈM QUÀ.[cite: 2]"
+            },
+            {
+                id: 3,
+                brand: "Cocoon",
+                name: "Bộ Sản Phẩm Làm Sạch Mụn & Kiểm Soát Dầu Từ Bí Đao[cite: 2]",
+                price: 590000, // Ước tính giá hiển thị
+                promoText: "MUA 1 TẶNG 1",
+                promoType: "promo",
+                image: "https://images.unsplash.com/photo-1556228720-1c2f6d0f6224?q=80&w=600&auto=format&fit=crop",
+                ingredients: "Chiết xuất Bí đao, Rau má & Tràm trà.[cite: 2]",
+                includes: [
+                    "Nước bí đao cân bằng da (280ml)[cite: 2]",
+                    "Nước bí đao cân bằng da / Tinh chất bí đao bổ sung (30ml)[cite: 2]",
+                    "Mặt nạ bí đao (30ml)[cite: 2]",
+                    "Tinh dầu / Tinh chất bí đao kháng viêm[cite: 2]"
+                ],
+                desc: "Cân bằng lượng dầu trên da, kháng khuẩn, làm dịu các nốt mụn viêm và giảm bớt tình trạng mụn ẩn, mụn đầu đen.[cite: 2]"
+            },
+            {
+                id: 4,
+                brand: "La Roche-Posay",
+                name: "Bộ Sản Phẩm Làm Sạch Sâu, Kiềm Dầu & Tẩy Tế Bào Chết La Roche-Posay Effaclar[cite: 2]",
+                price: 850000, // Ước tính
+                promoText: "QUÀ TRỊ GIÁ 105K",
+                promoType: "gift",
+                image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=600&auto=format&fit=crop",
+                ingredients: "Kẽm PCA (Zinc PCA), Salicylic Acid (BHA), LHA & Nước khoáng La Roche-Posay.[cite: 2]",
+                includes: [
+                    "Gel rửa mặt tạo bọt dịu nhẹ Effaclar Gel Moussant Purifiant (400ml)[cite: 2]",
+                    "Nước tẩy trang kiềm dầu Effaclar Eau Micellaire Ultra (200ml)[cite: 2]",
+                    "Quà tặng: Gel rửa mặt & tắm vi tẩy tế bào chết Effaclar Micro-Peeling Purifying Gel (50g)[cite: 2]"
+                ],
+                desc: "Giải pháp làm sạch toàn diện cho da dầu mụn. Giúp kiềm dầu, tẩy tế bào chết nhẹ nhàng và làm thông thoáng lỗ chân lông.[cite: 2]"
+            },
+            {
+                id: 5,
+                brand: "La Roche-Posay",
+                name: "Bộ Sản Phẩm Phục Hồi Da, Làm Dịu Kích Ứng & Làm Sạch Sâu La Roche-Posay Cicaplast Baume B5+[cite: 2]",
+                price: 720000, // Ước tính
+                promoText: "QUÀ ĐỘC QUYỀN 500K",
+                promoType: "gift",
+                image: "https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=600&auto=format&fit=crop",
+                ingredients: "Panthenol 5% (Vitamin B5), Madecassoside, Kẽm (Zinc), Nước khoáng La Roche-Posay & Công nghệ vi sinh Microbiome Science.[cite: 2]",
+                includes: [
+                    "Kem dưỡng phục hồi da La Roche-Posay Cicaplast Baume B5+[cite: 2]",
+                    "Quà tặng độc quyền: Nước tẩy trang kiềm dầu Effaclar Eau Micellaire Ultra (50ml x 3)[cite: 2]",
+                    "Quà tặng độc quyền: Kem dưỡng giảm mụn & mờ thâm Effaclar Duo(+) (3ml)[cite: 2]"
+                ],
+                desc: "Phục hồi và làm dịu làn da bị tổn thương hoặc kích ứng, tăng cường hàng rào bảo vệ da, làm sạch sâu bụi bẩn và lớp trang điểm mà vẫn giữ ẩm cho da, hỗ trợ kiềm dầu và ngừa mụn hiệu quả. Miễn phí vận chuyển mọi đơn hàng.[cite: 2]"
+            },
+            {
+                id: 6,
+                brand: "La Roche-Posay",
+                name: "Bộ Sản Phẩm Bảo Vệ Da Tối Ưu, Kiểm Soát Dầu & Làm Sạch Da La Roche-Posay Anthelios & Effaclar[cite: 2]",
+                price: 950000, // Ước tính
+                promoText: "HOT COMBO",
+                promoType: "promo",
+                image: "https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=600&auto=format&fit=crop",
+                ingredients: "Màng lọc Mexoryl 400, Kẽm PCA (Zinc PCA), Airlicium & Nước khoáng La Roche-Posay.[cite: 2]",
+                includes: [
+                    "Kem chống nắng kiểm soát dầu La Roche-Posay Anthelios UVMune 400 Oil Control Gel-Cream (50ml)[cite: 2]",
+                    "Gel rửa mặt tạo bọt dịu nhẹ kiềm dầu La Roche-Posay Effaclar Purifying Foaming Gel (50ml)[cite: 2]"
+                ],
+                desc: "Bảo vệ da tối ưu khỏi tia UVA/UVB dài, kiểm soát dầu thừa và bã nhờn suốt cả ngày, làm sạch sâu lỗ chân lông, giúp da luôn khô thoáng và ngừa mụn hiệu quả.[cite: 2]"
+            },
+            {
+                id: 7,
+                brand: "L'Oréal Paris",
+                name: "Bộ Đôi Tinh Chất Cấp Ẩm, Phục Hồi & Làm Căng Bóng Da L'Oréal Paris Revitalift[cite: 2]",
+                price: 790000, // Ước tính
+                promoText: "GIÁ ĐẶC BIỆT",
+                promoType: "promo",
+                image: "https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=600&auto=format&fit=crop",
+                ingredients: "Hyaluronic Acid (Macro, Micro [HA]), Vegan PDRN+ Complex, Ascorbyl Glucoside (Vitamin C) & Glycerin.[cite: 2]",
+                includes: [
+                    "Tinh chất cấp ẩm & phục hồi chuyên sâu L'Oréal Revitalift Hyaluron PDRN Skin Booster Serum (Chai màu tím)[cite: 2]",
+                    "Tinh chất cấp ẩm & làm căng mịn da L'Oréal Revitalift 1.5% Hyaluronic Acid Serum (Chai trong suốt)[cite: 2]"
+                ],
+                desc: "Cấp ẩm sâu đa tầng, giúp da luôn ngậm nước và căng mọng tức thì. Hỗ trợ tái tạo, kích thích tăng sinh tế bào da và phục hồi độ đàn hồi nhờ công nghệ PDRN. Giảm thiểu các nếp nhăn nông, cải thiện tình trạng da thô ráp và mang lại vẻ rạng rỡ, tươi trẻ.[cite: 2]"
+            },
+            {
+                id: 8,
+                brand: "L'Oréal Paris",
+                name: "Bộ Sản Phẩm Dưỡng Sáng Da, Giảm Thâm Nám & Căng Bóng L'Oréal Paris Glycolic-Bright[cite: 2]",
+                price: 820000, // Ước tính
+                promoText: "SÁNG DA MỜ THÂM",
+                promoType: "promo",
+                image: "https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=600&auto=format&fit=crop",
+                ingredients: "Glycolic Acid (AHA), Melasyl™, Niacinamide (Vitamin B3) & Vitamin C.[cite: 2]",
+                includes: [
+                    "Tinh chất dưỡng sáng da & mờ thâm L'Oréal Paris Glycolic-Bright 8% Melasyl + Glycolic + Niacinamide Serum (Chai serum 30ml)[cite: 2]",
+                    "Kem dưỡng sáng da ban ngày L'Oréal Paris Glycolic-Bright Glowing Cream Day SPF 17 (2 hũ kem mini/dùng thử)[cite: 2]"
+                ],
+                desc: "Tẩy tế bào chết nhẹ nhàng, làm dịu và cải thiện kết cấu bề mặt da thô ráp. Hỗ trợ ức chế sản sinh melanin, làm mờ các vết thâm mụn, nám, tàn nhang và đốm nâu. Dưỡng da sáng mịn, đều màu và rạng rỡ sau thời gian ngắn sử dụng.[cite: 2]"
+            },
+            {
+                id: 9,
+                brand: "L'Oréal Paris",
+                name: "Bộ Sản Phẩm Dưỡng Da & Chăm Sóc Tóc Toàn Diện L'Oréal Paris[cite: 2]",
+                price: 1150000, // Ước tính
+                promoText: "TOÀN DIỆN 5 MÓN",
+                promoType: "gift",
+                image: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=600&auto=format&fit=crop",
+                ingredients: "Hyaluronic Acid (HA), Glycolic Acid (AHA), 6 loại dầu hoa tự nhiên, Công nghệ Micellar & Màng lọc chống nắng Mexoryl SX/XL.[cite: 2]",
+                includes: [
+                    "Tinh chất cấp ẩm & làm căng mịn da L'Oréal Revitalift 1.5% Hyaluronic Acid Serum (Chai tím/trong suốt)[cite: 2]",
+                    "Tinh chất dưỡng sáng & giảm thâm nám L'Oréal Glycolic-Bright Instant Glowing Serum (Chai hồng)[cite: 2]",
+                    "Dầu dưỡng tóc L'Oréal Elseve Extraordinary Oil Serum (Chai vàng hoàng kim)[cite: 2]",
+                    "Nước tẩy trang làm sạch sâu L'Oréal Micellar Water 3-in-1 (Chai xanh dương - 400ml)[cite: 2]",
+                    "Kem chống nắng kiềm dầu L'Oréal UV Defender Fresh Matte SPF 50+ PA++++ (Tuýp vàng/trắng)[cite: 2]"
+                ],
+                desc: "Chăm sóc da mặt: Làm sạch sâu bã nhờn/trang điểm, cấp ẩm đa tầng giúp da căng mọng, làm mờ thâm nám dưỡng sáng da và bảo vệ da tối ưu khỏi tia UV. Chăm sóc tóc: Nuôi dưỡng tóc mềm mượt, giảm xơ rối và tăng độ bóng khỏe tự nhiên mà không gây bết dính.[cite: 2]"
+            }
+        ];
+
+        // Format tiền tệ VNĐ
+        const formatMoney = (amount) => {
+            return amount.toLocaleString('vi-VN') + 'đ';
+        };
+
+        // Render Combos
+        const grid = document.getElementById('combo-grid');
+        
+        function renderCombos(data) {
+            grid.innerHTML = '';
+            data.forEach(item => {
+                let ribbonClass = item.promoType === 'gift' ? 'ribbon-gift' : '';
+                
+                // Cắt bớt description để hiển thị card gọn gàng
+                let shortDesc = item.desc.length > 100 ? item.desc.substring(0, 100) + '...' : item.desc;
+                
+                grid.innerHTML += `
+                    <div class="col-lg-4 col-md-6 animate__animated animate__fadeIn">
+                        <div class="combo-card">
+                            <div class="combo-brand-badge">${item.brand}</div>
+                            <div class="ribbon-promo ${ribbonClass}">${item.promoText}</div>
+                            <div class="combo-img-wrapper">
+                                <img src="${item.image}" alt="${item.name}">
+                            </div>
+                            <div class="combo-content">
+                                <h3 class="combo-title" title="${item.name}">${item.name}</h3>
+                                <div class="combo-includes">
+                                    <p class="mb-1 text-dark fw-bold">Gồm:</p>
+                                    <ul>
+                                        <li>${item.includes[0]}</li>
+                                        <li>${item.includes.length > 1 ? item.includes[1] : ''}</li>
+                                        ${item.includes.length > 2 ? `<li class="text-pink-main fst-italic">+ ${item.includes.length - 2} sản phẩm khác...</li>` : ''}
+                                    </ul>
+                                </div>
+                                <div class="combo-price-row mt-3">
+                                    <div class="combo-price">${formatMoney(item.price)}</div>
+                                    <button class="btn btn-veriglow rounded-circle p-0" style="width: 45px; height: 45px;" onclick="viewDetail(${item.id})">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Khởi tạo ban đầu
+        renderCombos(combosData);
+
+        // Chức năng Lọc (Filter)
+        function filterCombos(brand, btnElement) {
+            // Update active state of buttons
+            const buttons = document.querySelectorAll('#filter-buttons button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            // Lọc dữ liệu
+            if (brand === 'All') {
+                renderCombos(combosData);
+            } else {
+                const filteredData = combosData.filter(item => item.brand === brand);
+                renderCombos(filteredData);
+            }
+        }
+
+        // Xem chi tiết Modal
+        function viewDetail(id) {
+            const item = combosData.find(c => c.id === id);
+            if (!item) return;
+
+            document.getElementById('modal-brand').innerText = item.brand;
+            document.getElementById('modal-title').innerText = item.name;
+            document.getElementById('modal-img').src = item.image;
+            document.getElementById('modal-price').innerText = formatMoney(item.price);
+            
+            // Ribbon trong modal
+            const ribbon = document.getElementById('modal-ribbon');
+            ribbon.innerText = item.promoText;
+            ribbon.className = `ribbon-promo fs-6 px-4 py-2 ${item.promoType === 'gift' ? 'ribbon-gift' : ''}`;
+
+            // Render danh sách sản phẩm bao gồm
+            const includesList = document.getElementById('modal-includes');
+            includesList.innerHTML = '';
+            item.includes.forEach(inc => {
+                includesList.innerHTML += `<li class="fw-semibold text-dark"><i class="fas fa-check text-pink-main me-2"></i>${inc}</li>`;
+            });
+
+            document.getElementById('modal-ingredients').innerText = item.ingredients;
+            document.getElementById('modal-desc').innerText = item.desc;
+
+            // Gán event cho nút Mua
+            const btnAdd = document.getElementById('modal-add-cart-btn');
+            btnAdd.onclick = () => addToCart(item.id);
+
+            // Show Modal
+            const modal = new bootstrap.Modal(document.getElementById('comboDetailModal'));
+            modal.show();
+        }
+
+        // Hệ thống Giỏ hàng (Cart)
+        let cart = [];
+
+        function addToCart(id) {
+            const item = combosData.find(c => c.id === id);
+            if (!item) return;
+
+            // Check if exists
+            const existingItem = cart.find(cartItem => cartItem.id === id);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ ...item, qty: 1 });
+            }
+
+            updateCartUI();
+
+            // Hiển thị Toast thông báo
+            const toastEl = document.getElementById('cartToast');
+            const toast = new bootstrap.Toast(toastEl, { delay: 2000 });
+            document.getElementById('toast-msg').innerText = `Đã thêm ${item.name.substring(0,25)}... vào giỏ!`;
+            toast.show();
+
+            // Ẩn modal chi tiết nếu đang mở
+            const detailModalEl = document.getElementById('comboDetailModal');
+            const detailModal = bootstrap.Modal.getInstance(detailModalEl);
+            if(detailModal) {
+                detailModal.hide();
+            }
+        }
+
+        function updateCartUI() {
+            const body = document.getElementById('cart-body');
+            const badge = document.getElementById('cart-badge');
+            const headerCount = document.getElementById('cart-count-header');
+            const totalEl = document.getElementById('cart-total');
+
+            let totalQty = 0;
+            let totalPrice = 0;
+
+            if (cart.length === 0) {
+                body.innerHTML = `<div class="text-center text-muted my-5"><i class="fas fa-shopping-basket fs-1 mb-3 text-pink-light"></i><p>Giỏ hàng chưa có Combo nào.</p></div>`;
+            } else {
+                body.innerHTML = '';
+                cart.forEach((item, index) => {
+                    totalQty += item.qty;
+                    totalPrice += (item.price * item.qty);
+                    
+                    body.innerHTML += `
+                        <div class="d-flex align-items-center mb-4 pb-4 border-bottom">
+                            <img src="${item.image}" width="70" height="70" class="rounded object-fit-cover border me-3" alt="${item.brand}">
+                            <div class="flex-grow-1">
+                                <h6 class="mb-1 fw-bold text-dark" style="font-size: 0.85rem;">${item.name}</h6>
+                                <p class="text-pink-main fw-bold mb-2">${formatMoney(item.price)}</p>
+                                <div class="d-flex align-items-center">
+                                    <button class="btn btn-sm btn-outline-secondary px-2 py-0" onclick="changeQty(${index}, -1)">-</button>
+                                    <span class="mx-3 fw-bold">${item.qty}</span>
+                                    <button class="btn btn-sm btn-outline-secondary px-2 py-0" onclick="changeQty(${index}, 1)">+</button>
+                                </div>
+                            </div>
+                            <button class="btn text-danger ms-2 border-0" onclick="removeCartItem(${index})"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    `;
+                });
+            }
+
+            badge.innerText = totalQty;
+            headerCount.innerText = totalQty;
+            totalEl.innerText = formatMoney(totalPrice);
+        }
+
+        function changeQty(index, amount) {
+            cart[index].qty += amount;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function removeCartItem(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert("Vui lòng chọn ít nhất 1 Combo trước khi thanh toán!");
+                return;
+            }
+            alert("Đang chuyển hướng đến trang thanh toán an toàn của VeriGlow...");
+            // Thực tế sẽ redirect qua trang checkout, ở đây reset giỏ hàng làm demo
+            cart = [];
+            updateCartUI();
+            const cartModal = bootstrap.Modal.getInstance(document.getElementById('cartModal'));
+            if(cartModal) cartModal.hide();
+        }
+    </script>
+</body>
+</html>

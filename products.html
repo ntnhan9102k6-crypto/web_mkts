@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cửa Hàng Mỹ Phẩm | Veriglow Cosmetics</title>
+
+    <!-- Thư viện CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS Tùy chỉnh & Biến hệ thống -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        :root {
+            --vg-pink-main: #f06292;
+            --vg-pink-light: #f8bbd0;
+            --vg-pink-lightest: #fce4ec;
+            --vg-pink-soft: #ffb6c1;
+            --vg-pink-dark: #d81b60;
+        }
+        
+        body { font-family: 'Nunito', sans-serif; }
+        .brand-font { font-family: 'Playfair Display', serif; }
+        
+        /* Utility Classes bổ sung */
+        .text-pink-main { color: var(--vg-pink-main) !important; }
+        .text-pink-dark { color: var(--vg-pink-dark) !important; }
+        .bg-pink-lightest { background-color: var(--vg-pink-lightest) !important; }
+        .bg-pink-light { background-color: var(--vg-pink-light) !important; }
+        .bg-pink-soft { background-color: var(--vg-pink-soft) !important; }
+        .bg-pink-main { background-color: var(--vg-pink-main) !important; color: white; }
+        
+        .btn-veriglow {
+            background-color: var(--vg-pink-main);
+            color: white;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-veriglow:hover { background-color: var(--vg-pink-dark); color: white; }
+        
+        .btn-outline-veriglow {
+            border: 1px solid var(--vg-pink-main);
+            color: var(--vg-pink-dark);
+            background-color: white;
+        }
+        .btn-outline-veriglow.active, .btn-outline-veriglow:hover {
+            background-color: var(--vg-pink-main);
+            color: white;
+        }
+
+        /* Tăng cường độ sinh động (Vivid Colors) */
+        .vivid-header {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            padding: 50px 0;
+            border-bottom: 2px solid var(--vg-pink-main);
+            box-shadow: 0 4px 15px rgba(240, 98, 146, 0.2);
+        }
+        .filter-widget {
+            background: linear-gradient(to bottom, #ffffff, #fff5f8);
+            border: 1px solid var(--vg-pink-soft);
+        }
+        .product-card {
+            border: 1px solid var(--vg-pink-light);
+            background: linear-gradient(to bottom, #ffffff, #fdfbfb);
+            transition: all 0.3s ease;
+        }
+        .product-card:hover {
+            border-color: var(--vg-pink-main);
+            box-shadow: 0 15px 35px rgba(216, 27, 96, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        /* Style cho Modal Chi tiết sản phẩm */
+        .detail-modal-header {
+            background: linear-gradient(45deg, var(--vg-pink-dark), var(--vg-pink-main));
+            color: white;
+        }
+        .detail-modal-body {
+            background-color: #fffafc;
+        }
+        .info-section h6 {
+            color: var(--vg-pink-dark);
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            margin-bottom: 5px;
+            margin-top: 15px;
+        }
+        .info-section p { font-size: 0.95rem; color: #444; line-height: 1.6; }
+        
+        /* Bổ sung hình ảnh đồng đều cho card */
+        .card-img-top {
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--vg-pink-lightest);
+        }
+    </style>
+</head>
+<body class="bg-pink-lightest">
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top shadow-sm bg-white">
+        <div class="container">
+            <a class="navbar-brand text-pink-dark brand-font" href="index.html">
+                <i class="fas fa-leaf text-pink-main me-2"></i>Veriglow
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Sản Phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="blog.html">Blog Làm Đẹp</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Liên Hệ</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="javascript:void(0)" class="text-dark fs-5 position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
+                        <i class="fas fa-shopping-bag text-pink-dark"></i>
+                        <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Trang Sản Phẩm Sinh Động -->
+    <div class="vivid-header text-center animate__animated animate__fadeInDown">
+        <div class="container">
+            <h1 class="brand-font text-pink-dark fw-bold display-5">Thế Giới Mỹ Phẩm Veriglow</h1>
+            <p class="lead text-dark fw-bold">Uy tín tạo niềm tin, Minh bạch dựng vẻ đẹp</p>
+        </div>
+    </div>
+
+    <!-- Nội dung chính -->
+    <section class="py-5">
+        <div class="container-fluid px-lg-5">
+            <div class="row">
+                <!-- Sidebar Bộ Lọc -->
+                <div class="col-xl-2 col-lg-3 mb-4">
+                    <div class="filter-widget p-4 rounded-4 shadow-sm sticky-top" style="top: 100px;">
+                        <h4 class="brand-font text-pink-dark mb-4 border-bottom pb-2">Danh mục hãng</h4>
+                        <div class="d-flex flex-column gap-2" id="brandFilterContainer">
+                            <button class="btn btn-outline-veriglow w-100 text-start active" onclick="filterByBrand('all', this)">Tất cả (50)</button>
+                            <button class="btn btn-outline-veriglow w-100 text-start" onclick="filterByBrand('La Roche-Posay', this)">La Roche-Posay</button>
+                            <button class="btn btn-outline-veriglow w-100 text-start" onclick="filterByBrand('L’Oréal Paris', this)">L’Oréal Paris</button>
+                            <button class="btn btn-outline-veriglow w-100 text-start" onclick="filterByBrand('Cocoon', this)">Cocoon</button>
+                            <button class="btn btn-outline-veriglow w-100 text-start" onclick="filterByBrand('Anessa', this)">Anessa</button>
+                            <button class="btn btn-outline-veriglow w-100 text-start" onclick="filterByBrand('CeraVe', this)">CeraVe</button>
+                            <button class="btn btn-outline-veriglow w-100 text-start" onclick="filterByBrand('Bioderma', this)">Bioderma</button>
+                            <button class="btn btn-outline-veriglow w-100 text-start" onclick="filterByBrand('Paula’s Choice', this)">Paula’s Choice</button>
+                            <button class="btn btn-outline-veriglow w-100 text-start" onclick="filterByBrand('Innisfree', this)">Innisfree</button>
+                            <button class="btn btn-outline-veriglow w-100 text-start" onclick="filterByBrand('Maybelline', this)">Maybelline</button>
+                            <button class="btn btn-outline-veriglow w-100 text-start" onclick="filterByBrand('Dear, Klairs', this)">Dear, Klairs</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lưới 50 Sản Phẩm -->
+                <div class="col-xl-10 col-lg-9">
+                    <div class="d-flex justify-content-between align-items-center mb-4 bg-white p-3 rounded-4 shadow-sm border border-pink-soft">
+                        <span class="fw-bold text-pink-dark">Hiển thị <span id="product-count">50</span> sản phẩm</span>
+                    </div>
+                    <!-- Lưới chứa sản phẩm (JS sẽ nạp vào đây) -->
+                    <div class="row g-4" id="all-products-grid"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Giỏ Hàng -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down modal-dialog-right" style="margin: 0 0 0 auto; max-width: 400px; height: 100%;">
+            <div class="modal-content border-0 h-100 rounded-0">
+                <div class="modal-header bg-pink-light border-0">
+                    <h5 class="modal-title fw-bold brand-font text-pink-dark">
+                        <i class="fas fa-shopping-bag me-2"></i> Giỏ Hàng (<span id="cart-header-count">0</span>)
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body" id="cart-body-content">
+                    <p class="text-center text-muted mt-5">Giỏ hàng của bạn đang trống.</p>
+                </div>
+                <div class="modal-footer flex-column bg-light border-0">
+                    <div class="d-flex justify-content-between w-100 mb-3">
+                        <span class="fw-bold">Tổng tiền:</span>
+                        <span class="fw-bold text-pink-dark fs-5" id="cart-total-price">0đ</span>
+                    </div>
+                    <button type="button" class="btn btn-veriglow w-100 mb-2 py-2" onclick="processCheckout()">THANH TOÁN</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL CHI TIẾT SẢN PHẨM -->
+    <div class="modal fade" id="productDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 rounded-4 overflow-hidden shadow-lg">
+                <div class="modal-header detail-modal-header">
+                    <h5 class="modal-title fw-bold brand-font mb-0" id="detail-title">Tên sản phẩm</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body detail-modal-body p-4 p-md-5">
+                    <div class="row">
+                        <div class="col-md-5 text-center mb-4 mb-md-0">
+                            <img id="detail-img" src="" class="img-fluid rounded-4 shadow-sm bg-white p-3" alt="Ảnh SP">
+                            <h3 id="detail-price" class="text-pink-dark fw-bold mt-4 font-monospace"></h3>
+                            <button id="detail-add-cart-btn" class="btn btn-veriglow w-100 mt-3 shadow"><i class="fas fa-cart-plus me-2"></i>Thêm Vào Giỏ Hàng</button>
+                        </div>
+                        <div class="col-md-7 info-section">
+                            <div class="badge bg-pink-main px-3 py-2 mb-2" id="detail-brand">Thương hiệu</div>
+                            <div class="text-muted small fw-bold mb-3"><i class="fas fa-tag me-1"></i> <span id="detail-category">Danh mục</span> | <i class="fas fa-tint ms-2 me-1"></i> <span id="detail-capacity">Dung tích</span></div>
+                            
+                            <h6><i class="fas fa-info-circle me-1"></i> Mô tả sản phẩm</h6>
+                            <p id="detail-desc" class="bg-white p-3 rounded-3 border border-pink-soft"></p>
+                            
+                            <h6><i class="fas fa-star me-1"></i> Công dụng</h6>
+                            <p id="detail-usage"></p>
+                            
+                            <h6><i class="fas fa-users me-1"></i> Đối tượng sử dụng</h6>
+                            <p id="detail-target"></p>
+                            
+                            <h6><i class="fas fa-leaf me-1"></i> Loại da / Tóc phù hợp</h6>
+                            <p id="detail-skintype"></p>
+                            
+                            <h6><i class="fas fa-flask me-1"></i> Thành phần nổi bật</h6>
+                            <p id="detail-ingredients"></p>
+                            
+                            <h6><i class="fas fa-hand-sparkles me-1"></i> Cách sử dụng</h6>
+                            <p id="detail-howtouse" class="bg-white p-3 rounded-3 border border-pink-soft"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thư viện JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mảng 50 Sản Phẩm đầy đủ thông tin
+        const products = [
+            {
+                id: 1, brand: "La Roche-Posay",
+                name: "Anthelios UVmune 400 Oil Control Gel-Cream[cite: 1]",
+                category: "Kem chống nắng kiềm dầu (Sunscreen - Kem chống nắng)[cite: 1]",
+                capacity: "50ml[cite: 1]",
+                priceStr: "450.000 – 520.000 VNĐ[cite: 1]",
+                priceNum: 485000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=La+Roche-Posay+Gel-Cream",
+                desc: "Kem chống nắng dạng gel-cream (Kem dạng gel) giúp bảo vệ da trước tác động của ánh nắng mặt trời, đồng thời hỗ trợ kiểm soát dầu và hạn chế tình trạng bóng nhờn trên da. Sản phẩm có kết cấu mỏng nhẹ, phù hợp sử dụng hằng ngày.[cite: 1]",
+                usage: "Bảo vệ da khỏi tia UV (Ultraviolet - Tia cực tím), hỗ trợ kiểm soát dầu và giảm bóng nhờn.[cite: 1]",
+                target: "Người có làn da dầu, da hỗn hợp hoặc làn da dễ bóng nhờn.[cite: 1]",
+                skintype: "Da dầu, da hỗn hợp.[cite: 1]",
+                ingredients: "Mexoryl 400, Airlicium.[cite: 1]",
+                howtouse: "Thoa đều sản phẩm lên da trước khi tiếp xúc với ánh nắng; nên thoa lại định kỳ khi ở ngoài trời lâu.[cite: 1]"
+            },
+            {
+                id: 2, brand: "La Roche-Posay",
+                name: "Cicaplast Baume B5+[cite: 1]",
+                category: "Kem dưỡng phục hồi làm dịu da (Soothing Balm - Sáp làm dịu/phục hồi)[cite: 1]",
+                capacity: "40ml[cite: 1]",
+                priceStr: "330.000 – 390.000 VNĐ[cite: 1]",
+                priceNum: 360000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Cicaplast+Baume+B5+",
+                desc: "Cicaplast Baume B5+ là kem phục hồi đa năng giúp làm dịu, nuôi dưỡng và bảo vệ làn da khô, nhạy cảm hoặc đang bị kích ứng, đồng thời hỗ trợ phục hồi hàng rào bảo vệ da. Sản phẩm có kết cấu dạng balm (sáp) giàu dưỡng chất nhưng không gây cảm giác nhờn rít, có thể sử dụng cho mặt, môi và cơ thể.[cite: 1]",
+                usage: "Làm dịu da kích ứng, giảm cảm giác khó chịu, hỗ trợ phục hồi hàng rào bảo vệ da và bảo vệ vùng da khô, tổn thương.[cite: 1]",
+                target: "Trẻ sơ sinh từ 3 tháng tuổi, trẻ em và người trưởng thành; phù hợp với làn da nhạy cảm, khô hoặc dễ kích ứng.[cite: 1]",
+                skintype: "Mọi loại da, đặc biệt da khô, nhạy cảm và dễ kích ứng.[cite: 1]",
+                ingredients: "Panthenol (Vitamin B5) 5%, Madecassoside, Tribioma, nước khoáng La Roche-Posay, bơ hạt mỡ và các phức hợp khoáng chất đồng-kẽm-mangan.[cite: 1]",
+                howtouse: "Thoa một lượng vừa đủ lên vùng da sạch và khô, có thể sử dụng 2 lần/ngày. Dùng được cho mặt, môi và cơ thể; tránh vùng mắt và vết thương hở.[cite: 1]"
+            },
+            {
+                id: 3, brand: "La Roche-Posay",
+                name: "Effaclar Purifying Foaming Gel[cite: 1]",
+                category: "Gel rửa mặt cho da dầu mụn (Cleansing Gel - Gel làm sạch/rửa mặt)[cite: 1]",
+                capacity: "200ml[cite: 1]",
+                priceStr: "380.000 – 440.000 VNĐ[cite: 1]",
+                priceNum: 410000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Effaclar+Gel",
+                desc: "Gel rửa mặt tạo bọt giúp làm sạch bụi bẩn, dầu thừa và tạp chất trên da mà không làm da quá khô căng, hỗ trợ duy trì làn da sạch thoáng và phù hợp với nhu cầu chăm sóc da dầu, da dễ nổi mụn.[cite: 1]",
+                usage: "Làm sạch dầu thừa, bụi bẩn và tạp chất; giúp da sạch thoáng và giảm cảm giác nhờn.[cite: 1]",
+                target: "Người có da dầu, da hỗn hợp thiên dầu và da dễ nổi mụn.[cite: 1]",
+                skintype: "Da dầu, da hỗn hợp và da mụn.[cite: 1]",
+                ingredients: "Kẽm (Zinc), nước khoáng La Roche-Posay.[cite: 1]",
+                howtouse: "Làm ướt mặt, lấy một lượng gel vừa đủ tạo bọt với nước, massage nhẹ nhàng trên da rồi rửa sạch với nước.[cite: 1]"
+            },
+            {
+                id: 4, brand: "La Roche-Posay",
+                name: "Effaclar Ultra Concentrated Serum[cite: 1]",
+                category: "Serum giảm mụn & mờ thâm (Anti-Acne Serum - Tinh chất mờ mụn)[cite: 1]",
+                capacity: "30ml[cite: 1]",
+                priceStr: "820.000 – 950.000 VNĐ[cite: 1]",
+                priceNum: 885000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Effaclar+Serum",
+                desc: "Serum (Tinh chất) chăm sóc da chuyên sâu dành cho da dầu, da mụn, giúp hỗ trợ làm giảm tình trạng mụn, cải thiện bề mặt da và làm mờ các dấu hiệu thâm sau mụn, đồng thời hỗ trợ làm sạch và thông thoáng lỗ chân lông.[cite: 1]",
+                usage: "Hỗ trợ giảm mụn, làm mờ thâm sau mụn, cải thiện bề mặt da và giúp lỗ chân lông thông thoáng.[cite: 1]",
+                target: "Người có da dầu, da dễ nổi mụn và gặp tình trạng thâm sau mụn.[cite: 1]",
+                skintype: "Da dầu, da mụn.[cite: 1]",
+                ingredients: "Salicylic Acid, Glycolic Acid, LHA và Niacinamide.[cite: 1]",
+                howtouse: "Thoa một lượng serum vừa đủ lên da sạch, tránh vùng mắt; có thể bắt đầu với tần suất thấp rồi tăng dần tùy khả năng đáp ứng của da.[cite: 1]"
+            },
+            {
+                id: 5, brand: "La Roche-Posay",
+                name: "Micellar Water Ultra Reactive Skin[cite: 1]",
+                category: "Nước tẩy trang cho da nhạy cảm (Micellar Water - Nước tẩy trang công nghệ hạt Micelle)[cite: 1]",
+                capacity: "400ml[cite: 1]",
+                priceStr: "430.000 – 490.000 VNĐ[cite: 1]",
+                priceNum: 460000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Micellar+Water",
+                desc: "Nước tẩy trang dịu nhẹ dành cho da nhạy cảm, giúp loại bỏ bụi bẩn, lớp trang điểm và tạp chất trên da mà không gây cảm giác khô căng, đồng thời hỗ trợ làm dịu và duy trì sự thoải mái cho làn da.[cite: 1]",
+                usage: "Làm sạch lớp trang điểm, bụi bẩn và tạp chất trên da; hỗ trợ làm dịu làn da nhạy cảm.[cite: 1]",
+                target: "Người có làn da nhạy cảm, dễ kích ứng hoặc thường xuyên sử dụng kem chống nắng và trang điểm.[cite: 1]",
+                skintype: "Da nhạy cảm, da khô và da dễ kích ứng.[cite: 1]",
+                ingredients: "Công nghệ Micellar và nước khoáng La Roche-Posay.[cite: 1]",
+                howtouse: "Thấm một lượng vừa đủ sản phẩm vào bông tẩy trang, nhẹ nhàng lau toàn bộ khuôn mặt, vùng mắt và môi; có thể lặp lại cho đến khi da được làm sạch.[cite: 1]"
+            },
+            {
+                id: 6, brand: "L’Oréal Paris",
+                name: "Micellar Water 3-in-1 Deep Cleansing (Nắp xanh)[cite: 1]",
+                category: "Nước tẩy trang làm sạch sâu (Deep Cleansing - Làm sạch sâu)[cite: 1]",
+                capacity: "400ml[cite: 1]",
+                priceStr: "170.000 – 220.000 VNĐ[cite: 1]",
+                priceNum: 195000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Loreal+Micellar",
+                desc: "Nước tẩy trang Micellar Water 3-in-1 giúp làm sạch lớp trang điểm, bụi bẩn và dầu thừa trên da, hỗ trợ mang lại làn da sạch thoáng mà không cần chà xát mạnh.[cite: 1]",
+                usage: "Làm sạch lớp trang điểm, bụi bẩn và dầu thừa; hỗ trợ làm sạch sâu cho da.[cite: 1]",
+                target: "Người thường xuyên sử dụng kem chống nắng, trang điểm hoặc có nhu cầu làm sạch da hằng ngày.[cite: 1]",
+                skintype: "Da thường, da hỗn hợp và da dầu.[cite: 1]",
+                ingredients: "Công nghệ Micellar giúp hút và loại bỏ tạp chất trên da.[cite: 1]",
+                howtouse: "Thấm sản phẩm vào bông tẩy trang, nhẹ nhàng lau toàn bộ khuôn mặt, mắt và môi; lặp lại đến khi bông sạch.[cite: 1]"
+            },
+            {
+                id: 7, brand: "L’Oréal Paris",
+                name: "Revitalift Pure Hyaluronic Acid 1.5%[cite: 1]",
+                category: "Serum cấp ẩm căng bóng (Hydrating Serum - Tinh chất cấp ẩm)[cite: 1]",
+                capacity: "30ml[cite: 1]",
+                priceStr: "350.000 – 430.000 VNĐ[cite: 1]",
+                priceNum: 390000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Loreal+HA+Serum",
+                desc: "Serum (Tinh chất) cấp ẩm chứa Hyaluronic Acid giúp bổ sung độ ẩm cho da, hỗ trợ cải thiện tình trạng da khô thiếu nước và mang lại cảm giác da căng mịn, mềm mại và tươi sáng hơn.[cite: 1]",
+                usage: "Cấp ẩm, giúp da mềm mịn và hỗ trợ duy trì độ ẩm cho da.[cite: 1]",
+                target: "Người có làn da khô, thiếu nước hoặc muốn bổ sung độ ẩm cho da.[cite: 1]",
+                skintype: "Da khô, da thường, da hỗn hợp và da thiếu ẩm.[cite: 1]",
+                ingredients: "Hyaluronic Acid 1.5%.[cite: 1]",
+                howtouse: "Thoa một lượng serum vừa đủ lên da sạch, massage hoặc vỗ nhẹ cho sản phẩm thẩm thấu; sử dụng trước bước kem dưỡng.[cite: 1]"
+            },
+            {
+                id: 8, brand: "L’Oréal Paris",
+                name: "Glycolic Bright Instant Glowing Serum[cite: 1]",
+                category: "Serum dưỡng sáng mờ thâm (Brightening Serum - Tinh chất dưỡng sáng)[cite: 1]",
+                capacity: "30ml[cite: 1]",
+                priceStr: "340.000 – 420.000 VNĐ[cite: 1]",
+                priceNum: 380000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Glycolic+Bright",
+                desc: "Serum dưỡng sáng giúp chăm sóc làn da xỉn màu, hỗ trợ cải thiện tình trạng thâm sạm và mang lại vẻ ngoài sáng mịn, rạng rỡ hơn.[cite: 1]",
+                usage: "Hỗ trợ làm sáng da, cải thiện tình trạng thâm sạm và giúp da trông đều màu hơn.[cite: 1]",
+                target: "Người có làn da xỉn màu, không đều màu hoặc xuất hiện các vùng thâm sạm.[cite: 1]",
+                skintype: "Da thường, da hỗn hợp và da dầu.[cite: 1]",
+                ingredients: "Glycolic Acid và các thành phần hỗ trợ dưỡng sáng trong dòng Glycolic Bright.[cite: 1]",
+                howtouse: "Thoa một lượng serum vừa đủ lên da sạch, tránh vùng mắt; sử dụng đều đặn và kết hợp kem chống nắng vào ban ngày.[cite: 1]"
+            },
+            {
+                id: 9, brand: "L’Oréal Paris",
+                name: "UV Defender Matte & Fresh SPF50+[cite: 1]",
+                category: "Kem chống nắng mịn lì kiềm dầu (Matte & Fresh - Mịn lì và Tươi mát)[cite: 1]",
+                capacity: "50ml[cite: 1]",
+                priceStr: "250.000 – 320.000 VNĐ[cite: 1]",
+                priceNum: 285000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=UV+Defender",
+                desc: "Kem chống nắng SPF50+ giúp bảo vệ da trước tác động của tia UV, đồng thời hỗ trợ kiểm soát dầu và hạn chế tình trạng bóng nhờn, mang lại lớp finish (lớp hoàn thiện bề mặt) mịn lì và khô thoáng hơn.[cite: 1]",
+                usage: "Bảo vệ da khỏi tia UV, hỗ trợ kiểm soát dầu và giảm bóng nhờn.[cite: 1]",
+                target: "Người thường xuyên tiếp xúc với ánh nắng, đặc biệt là người có làn da dầu hoặc dễ bóng nhờn.[cite: 1]",
+                skintype: "Da dầu, da hỗn hợp.[cite: 1]",
+                ingredients: "Hệ thống màng lọc chống nắng SPF50+ và các thành phần hỗ trợ kiểm soát dầu.[cite: 1]",
+                howtouse: "Thoa đều một lượng vừa đủ lên mặt và các vùng da tiếp xúc với ánh nắng trước khi ra ngoài; thoa lại định kỳ, đặc biệt sau khi đổ mồ hôi hoặc tiếp xúc với nước.[cite: 1]"
+            },
+            {
+                id: 10, brand: "L’Oréal Paris",
+                name: "Elseve Extraordinary Oil Serum[cite: 1]",
+                category: "Tinh dầu dưỡng tóc bóng mượt (Hair Serum - Tinh chất dưỡng tóc)[cite: 1]",
+                capacity: "100ml[cite: 1]",
+                priceStr: "230.000 – 290.000 VNĐ[cite: 1]",
+                priceNum: 260000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Elseve+Oil+Serum",
+                desc: "Tinh dầu dưỡng tóc giúp bổ sung độ mềm mượt, hỗ trợ chăm sóc mái tóc khô xơ và làm tóc trông bóng khỏe hơn. Sản phẩm có thể sử dụng để chăm sóc tóc hằng ngày, giúp tóc dễ vào nếp và giảm cảm giác xơ rối.[cite: 1]",
+                usage: "Dưỡng tóc mềm mượt, hỗ trợ giảm xơ rối và tăng vẻ bóng mượt cho mái tóc.[cite: 1]",
+                target: "Người có tóc khô, xơ rối, thiếu độ bóng hoặc muốn chăm sóc tóc mềm mượt hơn.[cite: 1]",
+                skintype: "Tóc thường, tóc khô và tóc xơ rối.[cite: 1]",
+                ingredients: "Các loại dầu dưỡng có trong công thức Extraordinary Oil.[cite: 1]",
+                howtouse: "Lấy một lượng nhỏ sản phẩm ra lòng bàn tay, xoa đều rồi thoa lên thân và ngọn tóc; có thể sử dụng trên tóc khô hoặc tóc ẩm.[cite: 1]"
+            },
+            {
+                id: 11, brand: "Cocoon",
+                name: "Cà phê Đắk Lắk làm sạch da chết cơ thể[cite: 1]",
+                category: "Tẩy tế bào chết toàn thân (Body Scrub - Tẩy da chết cơ thể)[cite: 1]",
+                capacity: "200ml[cite: 1]",
+                priceStr: "125.000 – 145.000 VNĐ[cite: 1]",
+                priceNum: 135000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Cocoon+Body+Scrub",
+                desc: "Tẩy tế bào chết toàn thân với hạt cà phê nguyên chất từ Đắk Lắk kết hợp bơ ca cao Tiền Giang, giúp loại bỏ lớp da chết, cải thiện làn da xỉn màu và khô sần, mang lại làn da mềm mịn, sáng và đều màu hơn.[cite: 1]",
+                usage: "Làm sạch da chết toàn thân, giúp da mịn màng, mềm mại, hỗ trợ làm sáng và đều màu da.[cite: 1]",
+                target: "Người có làn da cơ thể nhiều tế bào chết, da xỉn màu, khô sần hoặc muốn duy trì làn da mềm mịn.[cite: 1]",
+                skintype: "Mọi loại da cơ thể.[cite: 1]",
+                ingredients: "Cà phê Đắk Lắk, bơ ca cao; caffeine và chất chống oxy hóa từ cà phê hỗ trợ làm da săn chắc, đều màu, trong khi bơ ca cao giúp giữ ẩm và làm mềm vùng da khô sần.[cite: 1]",
+                howtouse: "Thoa một lượng vừa đủ lên da ướt, massage nhẹ nhàng từ cổ xuống chân rồi tắm sạch với nước. Sử dụng 2–3 lần/tuần. Tránh dùng trên vết thương và tiếp xúc với mắt.[cite: 1]"
+            },
+            {
+                id: 12, brand: "Cocoon",
+                name: "Nước dưỡng tóc tinh dầu bưởi[cite: 1]",
+                category: "Xịt dưỡng kích mọc tóc (Hair Tonic - Nước dưỡng tóc)[cite: 1]",
+                capacity: "140ml[cite: 1]",
+                priceStr: "135.000 – 165.000 VNĐ[cite: 1]",
+                priceNum: 150000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Cocoon+Hair+Tonic",
+                desc: "Nước dưỡng tóc chứa tinh dầu vỏ bưởi Việt Nam kết hợp Vitamin B5, Xylishine, Baicapil và Bisabolol, giúp chăm sóc tóc yếu, dễ gãy rụng, hỗ trợ tăng mật độ tóc, nuôi dưỡng da đầu và cung cấp độ ẩm cho tóc.[cite: 1]",
+                usage: "Hỗ trợ giảm gãy rụng, giúp tóc trông dày hơn, nuôi dưỡng da đầu, cấp ẩm và làm tóc mềm mượt.[cite: 1]",
+                target: "Người có tóc yếu, dễ gãy rụng, tóc thưa mỏng hoặc tóc chậm phát triển.[cite: 1]",
+                skintype: "Tóc yếu, tóc dễ gãy rụng, tóc thưa mỏng.[cite: 1]",
+                ingredients: "Tinh dầu vỏ bưởi nguyên chất, Vitamin B5 (Panthenol), Xylishine, Baicapil, Bisabolol.[cite: 1]",
+                howtouse: "Lắc đều chai, dốc ngược chai để đầu vòi tiếp xúc với da đầu, di chuyển vòi để phủ đều sản phẩm rồi massage nhẹ. Sử dụng trên tóc khô và sạch 2 lần mỗi ngày vào sáng và tối.[cite: 1]"
+            },
+            {
+                id: 13, brand: "Cocoon",
+                name: "Nước hoa hồng Nghệ Hưng Yên[cite: 1]",
+                category: "Nước cân bằng sáng da (Brightening Toner - Nước cân bằng dưỡng sáng)[cite: 1]",
+                capacity: "140ml[cite: 1]",
+                priceStr: "175.000 – 195.000 VNĐ[cite: 1]",
+                priceNum: 185000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Cocoon+Toner",
+                desc: "Nước cân bằng chứa chiết xuất nghệ Hưng Yên kết hợp AHA 5% và Betaine, giúp làm sạch tế bào chết, cung cấp độ ẩm, hỗ trợ làm sáng và cải thiện tình trạng da xỉn màu, không đều màu.[cite: 1]",
+                usage: "Làm sạch tế bào chết, cấp ẩm, làm mềm da, hỗ trợ làm sáng và đều màu da.[cite: 1]",
+                target: "Người có da xỉn màu, nhiều vết thâm, thiếu sức sống.[cite: 1]",
+                skintype: "Mọi loại da.[cite: 1]",
+                ingredients: "Chiết xuất nghệ Hưng Yên, AHA 5%, Betaine, dầu nghệ.[cite: 1]",
+                howtouse: "Sau khi rửa mặt, lấy một lượng vừa đủ vào lòng bàn tay, thoa đều lên da và vỗ nhẹ để sản phẩm thẩm thấu. Dùng sáng và tối, tránh tiếp xúc với mắt. Nếu dùng buổi sáng nên kết hợp kem chống nắng.[cite: 1]"
+            },
+            {
+                id: 14, brand: "Cocoon",
+                name: "Thạch hoa hồng dưỡng ẩm ẩm mượt da[cite: 1]",
+                category: "Kem dưỡng ẩm dạng gel (Gel Cream - Kem dạng gel)[cite: 1]",
+                capacity: "30ml[cite: 1]",
+                priceStr: "165.000 – 190.000 VNĐ[cite: 1]",
+                priceNum: 175000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Cocoon+Gel+Cream",
+                desc: "Thạch dưỡng ẩm với nước hoa hồng hữu cơ kết hợp Pentavitin, axit amin và HA, giúp cấp ẩm và khóa ẩm, mang lại làn da đầy đặn, mềm mượt và mịn màng.[cite: 1]",
+                usage: "Cấp ẩm và khóa ẩm suốt 24 giờ, làm dịu da, giúp da mềm mượt, hỗ trợ duy trì hàng rào bảo vệ da.[cite: 1]",
+                target: "Người có làn da khô, mất nước hoặc cần cấp ẩm và khóa ẩm.[cite: 1]",
+                skintype: "Da khô, da hỗn hợp thiên khô, da thường.[cite: 1]",
+                ingredients: "Nước hoa hồng hữu cơ, HA, Pentavitin, axit amin, Panthenol.[cite: 1]",
+                howtouse: "Thoa một lượng vừa đủ lên da mặt sạch, sử dụng 2 lần mỗi ngày vào sáng và tối.[cite: 1]"
+            },
+            {
+                id: 15, brand: "Cocoon",
+                name: "Sữa chống nắng Bí Đao[cite: 1]",
+                category: "Sữa chống nắng cho da dầu mụn (Sun Milk - Sữa chống nắng)[cite: 1]",
+                capacity: "50ml[cite: 1]",
+                priceStr: "295.000 – 345.000 VNĐ[cite: 1]",
+                priceNum: 320000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Cocoon+Sun+Milk",
+                desc: "Sữa chống nắng kết hợp màng lọc UV thế hệ mới, chiết xuất bí đao, Synoxyl AZ và Melanin, giúp bảo vệ da trước tia UVA, UVB và ánh sáng năng lượng cao nhìn thấy được. Kết cấu nhẹ, thấm nhanh, không để lại vệt trắng.[cite: 1]",
+                usage: "Bảo vệ da khỏi tia UVA, UVB và ánh sáng nhìn thấy; hỗ trợ giảm bóng nhờn và duy trì lớp nền tự nhiên.[cite: 1]",
+                target: "Người cần chống nắng hằng ngày, đặc biệt người có da dầu, da mụn hoặc da nhạy cảm.[cite: 1]",
+                skintype: "Da dầu, da mụn, da nhạy cảm.[cite: 1]",
+                ingredients: "Chiết xuất bí đao, màng lọc UV thế hệ mới, Synoxyl AZ, Melanin, Vitamin E.[cite: 1]",
+                howtouse: "Lắc đều trước khi dùng, thoa một lượng đủ lên toàn mặt và cổ vào buổi sáng, trước khi ra nắng khoảng 15 phút. Thoa lại sau khi đổ mồ hôi, bơi hoặc lau bằng khăn.[cite: 1]"
+            },
+            {
+                id: 16, brand: "Anessa",
+                name: "Perfect UV Sunscreen Skincare Milk N SPF50+[cite: 1]",
+                category: "Sữa chống nắng kiềm dầu kháng nước (Skincare Milk - Sữa dưỡng da)[cite: 1]",
+                capacity: "60ml[cite: 1]",
+                priceStr: "550.000 – 685.000 VNĐ[cite: 1]",
+                priceNum: 615000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Anessa+Skincare+Milk",
+                desc: "Gel chống nắng SPF50+ giúp bảo vệ da trước tác động của tia UVA và UVB, đồng thời cung cấp độ ẩm và hỗ trợ chăm sóc da. Sản phẩm có kết cấu gel mỏng nhẹ, dễ tán, mang lại cảm giác ẩm mượt và thoải mái khi sử dụng hằng ngày.[cite: 1]",
+                usage: "Bảo vệ da khỏi tia UVA, UVB; hỗ trợ dưỡng ẩm, giúp da mềm mịn và bảo vệ da khi tiếp xúc với ánh nắng.[cite: 1]",
+                target: "Người cần sử dụng kem chống nắng hằng ngày, đặc biệt người thường xuyên tiếp xúc với ánh nắng hoặc hoạt động ngoài trời.[cite: 1]",
+                skintype: "Da thường, da khô, da hỗn hợp thiên khô.[cite: 1]",
+                ingredients: "Hyaluronic Acid, collagen và các thành phần dưỡng ẩm giúp duy trì độ ẩm cho da.[cite: 1]",
+                howtouse: "Lấy một lượng vừa đủ thoa đều lên mặt, cổ và các vùng da tiếp xúc với ánh nắng sau bước dưỡng da buổi sáng. Thoa lại sau khi đổ mồ hôi nhiều, bơi hoặc lau bằng khăn.[cite: 1]"
+            },
+            {
+                id: 17, brand: "Anessa",
+                name: "Perfect UV Sunscreen Skincare Gel N SPF50+[cite: 1]",
+                category: "Gel chống nắng dưỡng ẩm mát da (Skincare Gel - Gel dưỡng da)[cite: 1]",
+                capacity: "90g[cite: 1]",
+                priceStr: "480.000 – 575.000 VNĐ[cite: 1]",
+                priceNum: 525000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Anessa+Skincare+Gel",
+                desc: "Sữa chống nắng dịu nhẹ giúp bảo vệ da trước tác động của tia UV, đồng thời duy trì độ ẩm và hạn chế cảm giác khô căng. Sản phẩm hướng đến làn da nhạy cảm và trẻ em.[cite: 1]",
+                usage: "Bảo vệ da khỏi tia UVA, UVB, hỗ trợ dưỡng ẩm và bảo vệ da khi hoạt động ngoài trời.[cite: 1]",
+                target: "Người có làn da nhạy cảm, trẻ em và người cần sản phẩm chống nắng dịu nhẹ.[cite: 1]",
+                skintype: "Da nhạy cảm, da khô và da trẻ em.[cite: 1]",
+                ingredients: "Super Hyaluronic Acid và các chiết xuất thiên nhiên chống oxy hóa.[cite: 1]",
+                howtouse: "Lắc kỹ trước khi dùng, thoa đều lên mặt và vùng da cần bảo vệ sau bước dưỡng da buổi sáng. Thoa lại sau khi tiếp xúc nhiều với nước hoặc lau bằng khăn.[cite: 1]"
+            },
+            {
+                id: 18, brand: "Anessa",
+                name: "Moisture UV Sunscreen Mild Milk SPF35[cite: 1]",
+                category: "Sữa chống nắng cho da nhạy cảm & trẻ em (Mild Milk - Sữa dịu nhẹ)[cite: 1]",
+                capacity: "60ml[cite: 1]",
+                priceStr: "550.000 – 685.000 VNĐ[cite: 1]",
+                priceNum: 615000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Anessa+Mild+Milk",
+                desc: "Sữa chống nắng dịu nhẹ dành cho làn da nhạy cảm và trẻ em, giúp bảo vệ da trước tia UVA/UVB đồng thời cung cấp độ ẩm, hạn chế tình trạng khô căng. Công thức dịu nhẹ, không cồn, không hương liệu và không paraben.[cite: 1]",
+                usage: "Bảo vệ da khỏi tia UVA, UVB; hỗ trợ dưỡng ẩm, làm dịu và bảo vệ da khỏi tình trạng khô do ánh nắng.[cite: 1]",
+                target: "Người có làn da nhạy cảm, trẻ em và người cần sản phẩm chống nắng dịu nhẹ hằng ngày.[cite: 1]",
+                skintype: "Da nhạy cảm, da khô và da trẻ em.[cite: 1]",
+                ingredients: "Zinc Oxide, Titanium Dioxide, Super Hyaluronic Acid, Dipotassium Glycyrrhizate, Vitamin E.[cite: 1]",
+                howtouse: "Lắc đều trước khi dùng, thoa một lượng vừa đủ lên mặt và cơ thể trước khi tiếp xúc với ánh nắng. Thoa lại sau khi ra mồ hôi, tiếp xúc với nước hoặc lau bằng khăn.[cite: 1]"
+            },
+            {
+                id: 19, brand: "Anessa",
+                name: "Perfect UV Sunscreen Skincare Spray SPF50+[cite: 1]",
+                category: "Xịt chống nắng toàn thân tiện lợi (Sun Spray - Xịt chống nắng)[cite: 1]",
+                capacity: "60g[cite: 1]",
+                priceStr: "380.000 – 450.000 VNĐ[cite: 1]",
+                priceNum: 415000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Anessa+Sun+Spray",
+                desc: "Xịt chống nắng SPF50+ PA++++ giúp bảo vệ da trước tia UVA, UVB và các tác động từ môi trường. Dạng xịt tiện lợi, có thể sử dụng cho mặt, cơ thể và tóc, đồng thời hỗ trợ dưỡng ẩm và chống oxy hóa cho da.[cite: 1]",
+                usage: "Bảo vệ da khỏi tia UV, chống trôi khi tiếp xúc với nước và mồ hôi, hỗ trợ dưỡng ẩm và chống oxy hóa.[cite: 1]",
+                target: "Người thường xuyên hoạt động ngoài trời, đi biển, chơi thể thao hoặc cần chống nắng tiện lợi trong ngày.[cite: 1]",
+                skintype: "Mọi loại da.[cite: 1]",
+                ingredients: "Super Hyaluronic Acid, chiết xuất hoa hồng vàng Tormentilla, chiết xuất cam thảo và tinh chất Sun Essence.[cite: 1]",
+                howtouse: "Lắc kỹ trước khi dùng. Với cơ thể và tóc, giữ chai cách 10–15 cm rồi xịt đều. Với mặt, xịt sản phẩm ra lòng bàn tay rồi thoa lên mặt; không xịt trực tiếp vào mặt. Có thể sử dụng lại trong ngày.[cite: 1]"
+            },
+            {
+                id: 20, brand: "Anessa",
+                name: "Day Serum SPF50+ PA++++[cite: 1]",
+                category: "Serum chống nắng nâng tông ngừa lão hóa (Day Serum - Tinh chất ban ngày)[cite: 1]",
+                capacity: "30ml[cite: 1]",
+                priceStr: "750.000 – 890.000 VNĐ[cite: 1]",
+                priceNum: 820000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Anessa+Day+Serum",
+                desc: "Serum (Tinh chất) chống nắng SPF50+ PA++++ giúp bảo vệ da khỏi tia UV và bụi mịn, đồng thời dưỡng ẩm, dưỡng sáng, nâng tông và hỗ trợ ngăn ngừa các dấu hiệu lão hóa. Sản phẩm có kết cấu mỏng nhẹ, khô ráo và hỗ trợ kiểm soát dầu.[cite: 1]",
+                usage: "Chống nắng, dưỡng ẩm, hỗ trợ làm sáng và đều màu da, nâng tông và ngăn ngừa dấu hiệu lão hóa.[cite: 1]",
+                target: "Người muốn kết hợp chống nắng với các bước dưỡng da hằng ngày, đặc biệt người quan tâm đến dưỡng sáng và chống lão hóa.[cite: 1]",
+                skintype: "Mọi loại da.[cite: 1]",
+                ingredients: "Super HA, Collagen, Glycerin, m-Tranexamic Acid và chiết xuất quả mâm xôi.[cite: 1]",
+                howtouse: "Lắc kỹ trước khi dùng. Sử dụng sau bước dưỡng da buổi sáng, lấy lượng vừa đủ thoa đều lên toàn bộ khuôn mặt và vùng da cần bảo vệ. Có thể dùng làm lớp lót trang điểm và thoa lại sau khi tiếp xúc nhiều với nước hoặc lau bằng khăn.[cite: 1]"
+            },
+            {
+                id: 21, brand: "CeraVe",
+                name: "Foaming Facial Cleanser[cite: 1]",
+                category: "Sữa rửa mặt tạo bọt kiềm dầu (Foaming Cleanser - Sữa rửa mặt tạo bọt)[cite: 1]",
+                capacity: "473ml[cite: 1]",
+                priceStr: "390.000 – 450.000 VNĐ[cite: 1]",
+                priceNum: 420000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=CeraVe+Foaming+Cleanser",
+                desc: "Sữa rửa mặt tạo bọt giúp làm sạch bụi bẩn, dầu thừa và tạp chất trên da, đồng thời duy trì độ ẩm và hỗ trợ bảo vệ hàng rào tự nhiên của da.[cite: 1]",
+                usage: "Làm sạch dầu thừa, bụi bẩn và tạp chất; giúp da sạch thoáng mà không gây khô căng.[cite: 1]",
+                target: "Người có da dầu, da hỗn hợp hoặc da dễ tiết nhiều dầu.[cite: 1]",
+                skintype: "Da thường đến da dầu, da hỗn hợp.[cite: 1]",
+                ingredients: "3 Ceramides thiết yếu, Hyaluronic Acid, Niacinamide.[cite: 1]",
+                howtouse: "Làm ướt mặt, lấy một lượng vừa đủ tạo bọt và massage nhẹ nhàng, sau đó rửa sạch với nước.[cite: 1]"
+            },
+            {
+                id: 22, brand: "CeraVe",
+                name: "Hydrating Facial Cleanser[cite: 1]",
+                category: "Sữa rửa mặt dưỡng ẩm da khô (Hydrating Cleanser - Sữa rửa mặt cấp ẩm)[cite: 1]",
+                capacity: "473ml[cite: 1]",
+                priceStr: "390.000 – 450.000 VNĐ[cite: 1]",
+                priceNum: 420000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=CeraVe+Hydrating+Cleanser",
+                desc: "Sữa rửa mặt dịu nhẹ giúp loại bỏ bụi bẩn, dầu thừa và tạp chất mà không làm mất đi độ ẩm tự nhiên của da, đồng thời hỗ trợ phục hồi và duy trì hàng rào bảo vệ da.[cite: 1]",
+                usage: "Làm sạch da, cấp ẩm, làm dịu và giúp duy trì hàng rào bảo vệ da.[cite: 1]",
+                target: "Người có làn da khô, da thiếu ẩm hoặc dễ bị khô căng sau khi rửa mặt.[cite: 1]",
+                skintype: "Da thường đến da khô, da rất khô.[cite: 1]",
+                ingredients: "Ceramides, Hyaluronic Acid, Niacinamide.[cite: 1]",
+                howtouse: "Làm ướt mặt, lấy sản phẩm massage nhẹ nhàng trên da rồi rửa sạch với nước.[cite: 1]"
+            },
+            {
+                id: 23, brand: "CeraVe",
+                name: "Blemish Control Cleanser[cite: 1]",
+                category: "Sữa rửa mặt ngừa mụn chứa BHA 2% (Blemish Control Cleanser - Sữa rửa mặt kiểm soát mụn)[cite: 1]",
+                capacity: "236ml[cite: 1]",
+                priceStr: "350.000 – 420.000 VNĐ[cite: 1]",
+                priceNum: 385000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=CeraVe+Blemish+Control",
+                desc: "Sữa rửa mặt dạng gel tạo bọt dành cho da dầu mụn, chứa 2% Salicylic Acid giúp làm sạch sâu lỗ chân lông, hỗ trợ giảm mụn và kiểm soát dầu thừa mà vẫn duy trì hàng rào bảo vệ da.[cite: 1]",
+                usage: "Làm sạch dầu thừa, thông thoáng lỗ chân lông, hỗ trợ giảm mụn và mụn đầu đen.[cite: 1]",
+                target: "Người có da dầu, da hỗn hợp, mụn ẩn hoặc lỗ chân lông dễ bị bít tắc.[cite: 1]",
+                skintype: "Da dầu, da hỗn hợp, da mụn.[cite: 1]",
+                ingredients: "Salicylic Acid 2%, đất sét tinh khiết, Niacinamide, 3 Ceramides thiết yếu.[cite: 1]",
+                howtouse: "Làm ướt da, lấy sản phẩm massage nhẹ nhàng trên mặt rồi rửa sạch với nước.[cite: 1]"
+            },
+            {
+                id: 24, brand: "CeraVe",
+                name: "Moisturizing Cream[cite: 1]",
+                category: "Kem dưỡng ẩm phục hồi thể nặng (Moisturizing Cream - Kem dưỡng ẩm)[cite: 1]",
+                capacity: "340g[cite: 1]",
+                priceStr: "380.000 – 460.000 VNĐ[cite: 1]",
+                priceNum: 420000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=CeraVe+Cream",
+                desc: "Kem dưỡng ẩm giúp cung cấp và duy trì độ ẩm lâu dài, đồng thời hỗ trợ phục hồi hàng rào bảo vệ da. Công thức dịu nhẹ có thể sử dụng cho cả mặt và cơ thể.[cite: 1]",
+                usage: "Dưỡng ẩm, làm mềm da, giảm cảm giác khô căng và hỗ trợ phục hồi hàng rào bảo vệ da.[cite: 1]",
+                target: "Người có làn da khô, rất khô hoặc da nhạy cảm cần dưỡng ẩm chuyên sâu.[cite: 1]",
+                skintype: "Da khô, da rất khô, da nhạy cảm.[cite: 1]",
+                ingredients: "3 Ceramides thiết yếu, Hyaluronic Acid, công nghệ MVE.[cite: 1]",
+                howtouse: "Thoa một lượng vừa đủ lên mặt hoặc cơ thể sau khi làm sạch; có thể sử dụng hằng ngày.[cite: 1]"
+            },
+            {
+                id: 25, brand: "CeraVe",
+                name: "AM Facial Moisturizing Lotion SPF30[cite: 1]",
+                category: "Sữa dưỡng ẩm ban ngày kèm chống nắng (Facial Moisturizing Lotion - Sữa dưỡng ẩm da mặt)[cite: 1]",
+                capacity: "52ml[cite: 1]",
+                priceStr: "370.000 – 430.000 VNĐ[cite: 1]",
+                priceNum: 400000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=CeraVe+AM+Lotion",
+                desc: "Sữa dưỡng ẩm ban ngày kết hợp chống nắng SPF30, giúp dưỡng ẩm, hỗ trợ phục hồi hàng rào bảo vệ da và bảo vệ da trước tia UVA, UVB.[cite: 1]",
+                usage: "Dưỡng ẩm, hỗ trợ phục hồi hàng rào da và bảo vệ da khỏi tia UVA, UVB.[cite: 1]",
+                target: "Người cần sản phẩm dưỡng ẩm và chống nắng tiện lợi trong chu trình chăm sóc da buổi sáng.[cite: 1]",
+                skintype: "Da thường, da khô, da hỗn hợp và da nhạy cảm.[cite: 1]",
+                ingredients: "3 Ceramides thiết yếu, Hyaluronic Acid, Niacinamide, màng lọc chống nắng SPF30.[cite: 1]",
+                howtouse: "Thoa đều lên mặt và cổ vào buổi sáng sau các bước dưỡng da.[cite: 1]"
+            },
+            {
+                id: 26, brand: "Bioderma",
+                name: "Sensibio H2O (Nắp hồng)[cite: 1]",
+                category: "Nước tẩy trang làm dịu da nhạy cảm (Sensibio - Sinh học làm dịu da)[cite: 1]",
+                capacity: "500ml[cite: 1]",
+                priceStr: "420.000 – 500.000 VNĐ[cite: 1]",
+                priceNum: 460000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Bioderma+Sensibio",
+                desc: "Nước tẩy trang dịu nhẹ dành cho da nhạy cảm, giúp loại bỏ bụi bẩn, tạp chất, hạt ô nhiễm và lớp trang điểm trên mặt, mắt mà không làm mất cân bằng tự nhiên của da.[cite: 1]",
+                usage: "Làm sạch lớp trang điểm và bụi bẩn, làm dịu da, hỗ trợ hạn chế kích ứng và duy trì sự cân bằng tự nhiên của da.[cite: 1]",
+                target: "Người có da nhạy cảm hoặc thường xuyên sử dụng kem chống nắng, trang điểm.[cite: 1]",
+                skintype: "Mọi loại da, đặc biệt da nhạy cảm.[cite: 1]",
+                ingredients: "Công nghệ Micellar, phức hợp D.A.F.[cite: 1]",
+                howtouse: "Thấm sản phẩm vào bông tẩy trang, nhẹ nhàng lau mặt, mắt và môi. Có thể sử dụng hằng ngày và không cần rửa lại với nước.[cite: 1]"
+            },
+            {
+                id: 27, brand: "Bioderma",
+                name: "Sébium H2O (Nắp xanh)[cite: 1]",
+                category: "Nước tẩy trang làm sạch da dầu mụn (Sébium - Kiểm soát bã nhờn)[cite: 1]",
+                capacity: "500ml[cite: 1]",
+                priceStr: "420.000 – 500.000 VNĐ[cite: 1]",
+                priceNum: 460000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Bioderma+Sebium",
+                desc: "Nước tẩy trang dành cho da dầu mụn, giúp loại bỏ bụi bẩn, lớp trang điểm và tạp chất, đồng thời hỗ trợ thanh lọc da và hạn chế bã nhờn mà không làm khô da.[cite: 1]",
+                usage: "Làm sạch da, loại bỏ lớp trang điểm, thanh lọc da và hỗ trợ kiểm soát dầu thừa.[cite: 1]",
+                target: "Người có da dầu, da hỗn hợp thiên dầu hoặc da dễ nổi mụn.[cite: 1]",
+                skintype: "Da dầu mụn, da hỗn hợp đến da dầu.[cite: 1]",
+                ingredients: "Công nghệ Micellar, phức hợp Fluidactiv™ và kẽm gluconate.[cite: 1]",
+                howtouse: "Thấm sản phẩm vào bông tẩy trang rồi nhẹ nhàng lau toàn bộ mặt, mắt và môi. Có thể sử dụng hằng ngày và không cần rửa lại.[cite: 1]"
+            },
+            {
+                id: 28, brand: "Bioderma",
+                name: "Cicabio Crème[cite: 1]",
+                category: "Kem phục hồi da tổn thương & sau nặn mụn (Cream - Kem phục hồi)[cite: 1]",
+                capacity: "40ml[cite: 1]",
+                priceStr: "310.000 – 370.000 VNĐ[cite: 1]",
+                priceNum: 340000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Bioderma+Cicabio",
+                desc: "Kem dưỡng phục hồi giúp làm dịu làn da bị tổn thương, kích ứng và khô, đồng thời hỗ trợ phục hồi lớp biểu bì, dưỡng ẩm và tạo lớp màng bảo vệ da.[cite: 1]",
+                usage: "Làm dịu da, giảm cảm giác ngứa và khó chịu, dưỡng ẩm và hỗ trợ phục hồi hàng rào bảo vệ da.[cite: 1]",
+                target: "Người có làn da khô, kích ứng hoặc bị tổn thương bề mặt.[cite: 1]",
+                skintype: "Mọi loại da, đặc biệt da yếu, khô và dễ kích ứng.[cite: 1]",
+                ingredients: "Glycerin, Zinc Oxide, Sodium Hyaluronate, Copper Sulfate, Madecassic Acid, Asiatic Acid.[cite: 1]",
+                howtouse: "Làm sạch và lau khô da, sau đó thoa lên vùng da bị kích ứng 1–2 lần mỗi ngày cho đến khi da phục hồi. Tránh vùng quanh mắt.[cite: 1]"
+            },
+            {
+                id: 29, brand: "Bioderma",
+                name: "Sébium Gel Moussant[cite: 1]",
+                category: "Gel rửa mặt thanh lọc da nhờn (Gel Moussant - Gel tạo bọt)[cite: 1]",
+                capacity: "200ml[cite: 1]",
+                priceStr: "340.000 – 410.000 VNĐ[cite: 1]",
+                priceNum: 375000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Bioderma+Gel+Moussant",
+                desc: "Gel rửa mặt tạo bọt dịu nhẹ dành cho da hỗn hợp đến da dầu, giúp loại bỏ tạp chất, hạn chế tiết bã nhờn và hỗ trợ ngăn ngừa bít tắc lỗ chân lông mà không làm khô da.[cite: 1]",
+                usage: "Làm sạch da, loại bỏ dầu thừa, hạn chế tiết bã nhờn và giúp lỗ chân lông thông thoáng.[cite: 1]",
+                target: "Người có da dầu, da hỗn hợp và da dễ bít tắc lỗ chân lông.[cite: 1]",
+                skintype: "Da hỗn hợp đến da dầu.[cite: 1]",
+                ingredients: "Kẽm, đồng và phức hợp Fluidactiv™.[cite: 1]",
+                howtouse: "Làm ướt mặt, tạo bọt sản phẩm rồi massage nhẹ nhàng trên da. Rửa sạch với nước và lau khô.[cite: 1]"
+            },
+            {
+                id: 30, brand: "Bioderma",
+                name: "Sébium Pore Refiner[cite: 1]",
+                category: "Kem dưỡng se khít lỗ chân lông & kiềm dầu (Pore Refiner - Se khít lỗ chân lông)[cite: 1]",
+                capacity: "30ml[cite: 1]",
+                priceStr: "410.000 – 490.000 VNĐ[cite: 1]",
+                priceNum: 450000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Bioderma+Pore+Refiner",
+                desc: "Kem dưỡng dành cho da hỗn hợp đến da dầu, giúp làm mịn bề mặt da, hỗ trợ se nhỏ lỗ chân lông và kiểm soát tình trạng bóng dầu, mang lại làn da đều màu và mịn màng hơn.[cite: 1]",
+                usage: "Hỗ trợ se nhỏ lỗ chân lông, điều chỉnh kết cấu da, kiểm soát dầu và giúp da mịn màng hơn.[cite: 1]",
+                target: "Người có da dầu, da hỗn hợp, lỗ chân lông to hoặc bề mặt da không mịn.[cite: 1]",
+                skintype: "Da hỗn hợp đến da dầu.[cite: 1]",
+                ingredients: "Salicylic Acid, chiết xuất nấm Fomes Officinalis, Ginkgo Biloba và phức hợp Fluidactiv™.[cite: 1]",
+                howtouse: "Thoa lên da đã được làm sạch 1–2 lần/ngày. Da dầu có thể thoa toàn mặt, da hỗn hợp tập trung ở vùng chữ T.[cite: 1]"
+            },
+            {
+                id: 31, brand: "Paula’s Choice",
+                name: "Skin Perfecting 2% BHA Liquid Exfoliant[cite: 1]",
+                category: "Dung dịch tẩy tế bào chết hóa học (Liquid Exfoliant - Dung dịch tẩy da chết)[cite: 1]",
+                capacity: "118ml[cite: 1]",
+                priceStr: "850.000 – 990.000 VNĐ[cite: 1]",
+                priceNum: 920000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Paulas+Choice+BHA",
+                desc: "Dung dịch tẩy tế bào chết hóa học chứa 2% Salicylic Acid giúp loại bỏ tế bào chết, làm sạch sâu lỗ chân lông và hỗ trợ cải thiện tình trạng da không đều màu, bề mặt sần.[cite: 1]",
+                usage: "Tẩy tế bào chết, làm sạch lỗ chân lông, hỗ trợ giảm bít tắc và giúp da mịn màng hơn.[cite: 1]",
+                target: "Người có da dầu, da dễ bít tắc, lỗ chân lông to hoặc bề mặt da không mịn.[cite: 1]",
+                skintype: "Da thường, da hỗn hợp, da dầu.[cite: 1]",
+                ingredients: "Salicylic Acid 2%, chiết xuất trà xanh.[cite: 1]",
+                howtouse: "Sau khi làm sạch và cân bằng da, thoa một lượng vừa đủ lên mặt và cổ, tránh vùng mắt. Có thể sử dụng 1–2 lần/ngày; ban ngày cần dùng kem chống nắng SPF30 trở lên.[cite: 1]"
+            },
+            {
+                id: 32, brand: "Paula’s Choice",
+                name: "Clinical 20% Niacinamide Treatment[cite: 1]",
+                category: "Tinh chất se khít lỗ chân lông chuyên sâu (Treatment - Tinh chất đặc trị/chuyên sâu)[cite: 1]",
+                capacity: "20ml[cite: 1]",
+                priceStr: "1.550.000 – 1.890.000 VNĐ[cite: 1]",
+                priceNum: 1720000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Paulas+Choice+Niacinamide",
+                desc: "Tinh chất chứa 20% Niacinamide giúp cải thiện tình trạng lỗ chân lông to, kiểm soát hoạt động tuyến bã nhờn và hỗ trợ làm đều màu, mịn bề mặt da.[cite: 1]",
+                usage: "Hỗ trợ thu nhỏ lỗ chân lông, kiểm soát dầu, làm mờ thâm và giúp da săn chắc, mịn màng hơn.[cite: 1]",
+                target: "Người có lỗ chân lông to, da dầu, da không đều màu hoặc có thâm sau mụn.[cite: 1]",
+                skintype: "Mọi loại da, đặc biệt da dầu và da có lỗ chân lông to.[cite: 1]",
+                ingredients: "Niacinamide 20%, chiết xuất rau sam, Acetyl Glucosamine.[cite: 1]",
+                howtouse: "Sau bước làm sạch, toner và tẩy tế bào chết, thoa đều lên mặt và cổ, massage nhẹ cho sản phẩm thẩm thấu. Ban ngày sử dụng thêm kem chống nắng SPF30 trở lên.[cite: 1]"
+            },
+            {
+                id: 33, brand: "Paula’s Choice",
+                name: "Clinical 1% Retinol Treatment[cite: 1]",
+                category: "Tinh chất tái tạo chống lão hóa mờ nếp nhăn (Retinol Treatment - Tinh chất tái tạo Retinol)[cite: 1]",
+                capacity: "30ml[cite: 1]",
+                priceStr: "1.650.000 – 1.950.000 VNĐ[cite: 1]",
+                priceNum: 1800000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Paulas+Choice+Retinol",
+                desc: "Tinh chất chứa 1% Retinol giúp cải thiện các dấu hiệu lão hóa, hỗ trợ làm giảm nếp nhăn, làm săn chắc và cải thiện tình trạng da không đều màu, thâm nám.[cite: 1]",
+                usage: "Hỗ trợ giảm nếp nhăn, làm săn chắc da, làm đều màu và cải thiện thâm nám.[cite: 1]",
+                target: "Người có dấu hiệu lão hóa, nếp nhăn, da không đều màu hoặc kém săn chắc.[cite: 1]",
+                skintype: "Da thường, da khô, da hỗn hợp, da dầu.[cite: 1]",
+                ingredients: "1% Retinol, Vitamin C, chiết xuất cam thảo, Peptides.[cite: 1]",
+                howtouse: "Sau bước làm sạch, toner và tẩy tế bào chết, thoa một lượng vừa đủ lên mặt và cổ. Nên bắt đầu với tần suất thấp để da làm quen; ban ngày luôn sử dụng kem chống nắng SPF30 trở lên.[cite: 1]"
+            },
+            {
+                id: 34, brand: "Paula’s Choice",
+                name: "Resist Super-Light Daily Wrinkle Defense SPF30[cite: 1]",
+                category: "Kem chống nắng vật lý nâng tông kiềm dầu (Wrinkle Defense - Bảo vệ chống nhăn)[cite: 1]",
+                capacity: "60ml[cite: 1]",
+                priceStr: "820.000 – 950.000 VNĐ[cite: 1]",
+                priceNum: 885000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Resist+Wrinkle+Defense",
+                desc: "Kem dưỡng chống nắng khoáng chất SPF30 giúp bảo vệ da trước tia UV, đồng thời dưỡng ẩm, hỗ trợ làm da mịn màng và tạo hiệu ứng nâng tông nhẹ nhờ lớp tint (màu nhẹ) màu.[cite: 1]",
+                usage: "Chống nắng, dưỡng ẩm, hỗ trợ làm sáng và làm mịn da, nâng tông nhẹ.[cite: 1]",
+                target: "Người cần kem dưỡng chống nắng hằng ngày, đặc biệt người có da dầu hoặc da hỗn hợp.[cite: 1]",
+                skintype: "Da dầu, da hỗn hợp, da thường.[cite: 1]",
+                ingredients: "Màng lọc chống nắng khoáng chất, chất chống oxy hóa và các thành phần dưỡng ẩm.[cite: 1]",
+                howtouse: "Thoa đều lên mặt vào buổi sáng, là bước cuối của chu trình chăm sóc da trước khi trang điểm. Thoa lại khi cần thiết khi tiếp xúc lâu với ánh nắng.[cite: 1]"
+            },
+            {
+                id: 35, brand: "Paula’s Choice",
+                name: "Resist Perfectly Balanced Foaming Cleanser[cite: 1]",
+                category: "Sữa rửa mặt cân bằng điều tiết bã nhờn (Foaming Cleanser - Sữa rửa mặt tạo bọt)[cite: 1]",
+                capacity: "190ml[cite: 1]",
+                priceStr: "650.000 – 760.000 VNĐ[cite: 1]",
+                priceNum: 705000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Resist+Cleanser",
+                desc: "Sữa rửa mặt tạo bọt dịu nhẹ giúp loại bỏ bụi bẩn, dầu thừa, tế bào chết và lớp trang điểm, đồng thời hỗ trợ cân bằng độ ẩm và làm dịu da.[cite: 1]",
+                usage: "Làm sạch da, loại bỏ dầu thừa và tạp chất, hỗ trợ duy trì độ ẩm và hàng rào bảo vệ da.[cite: 1]",
+                target: "Người có da thường đến da dầu, da hỗn hợp, da lão hóa hoặc lỗ chân lông to.[cite: 1]",
+                skintype: "Da thường, da hỗn hợp, da dầu.[cite: 1]",
+                ingredients: "Các thành phần dưỡng ẩm và tái tạo giúp hỗ trợ hàng rào bảo vệ da.[cite: 1]",
+                howtouse: "Làm ướt mặt, lấy một lượng vừa đủ tạo bọt rồi massage nhẹ nhàng trên da. Rửa sạch với nước và lau khô.[cite: 1]"
+            },
+            {
+                id: 36, brand: "Innisfree",
+                name: "No Sebum Mineral Powder[cite: 1]",
+                category: "Phấn phủ bột khoáng kiềm dầu (Loose Powder - Phấn phủ dạng bột)[cite: 1]",
+                capacity: "5g[cite: 1]",
+                priceStr: "120.000 – 160.000 VNĐ[cite: 1]",
+                priceNum: 140000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Innisfree+Mineral+Powder",
+                desc: "Phấn phủ bột khoáng giúp hấp thụ dầu thừa, kiểm soát bã nhờn và giữ cho da khô thoáng, hạn chế bóng dầu trong ngày.[cite: 1]",
+                usage: "Kiềm dầu, giảm bóng nhờn, giúp lớp trang điểm lâu trôi và mịn hơn.[cite: 1]",
+                target: "Người có da dầu, da hỗn hợp hoặc thường xuyên bị bóng dầu khi trang điểm.[cite: 1]",
+                skintype: "Da dầu, da hỗn hợp.[cite: 1]",
+                ingredients: "Khoáng chất tự nhiên, chiết xuất bạc hà và các thành phần kiểm soát bã nhờn.[cite: 1]",
+                howtouse: "Dùng cọ hoặc bông phấn lấy một lượng vừa đủ, phủ nhẹ lên vùng da dễ tiết dầu hoặc toàn bộ khuôn mặt sau bước trang điểm.[cite: 1]"
+            },
+            {
+                id: 37, brand: "Innisfree",
+                name: "Super Volcanic Pore Clay Mask 2X[cite: 1]",
+                category: "Mặt nạ đất sét tro núi lửa hút dầu (Clay Mask - Mặt nạ đất sét)[cite: 1]",
+                capacity: "100ml[cite: 1]",
+                priceStr: "290.000 – 360.000 VNĐ[cite: 1]",
+                priceNum: 325000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Innisfree+Clay+Mask",
+                desc: "Mặt nạ đất sét chứa tro núi lửa Jeju giúp hấp thụ dầu thừa, làm sạch bụi bẩn và tạp chất trong lỗ chân lông, hỗ trợ cải thiện tình trạng da sần và lỗ chân lông bị bít tắc.[cite: 1]",
+                usage: "Làm sạch sâu, hút dầu thừa, hỗ trợ làm thông thoáng lỗ chân lông và loại bỏ tế bào chết.[cite: 1]",
+                target: "Người có da dầu, da hỗn hợp, lỗ chân lông to hoặc dễ bít tắc.[cite: 1]",
+                skintype: "Da dầu, da hỗn hợp.[cite: 1]",
+                ingredients: "Tro núi lửa Jeju, AHA, chiết xuất trà xanh và các thành phần hấp thụ bã nhờn.[cite: 1]",
+                howtouse: "Sau khi rửa mặt, thoa một lớp vừa đủ lên da khô, tránh vùng mắt và môi. Để khoảng 10–15 phút rồi rửa sạch với nước. Sử dụng 1–2 lần/tuần.[cite: 1]"
+            },
+            {
+                id: 38, brand: "Innisfree",
+                name: "Green Tea Seed Hyaluronic Serum[cite: 1]",
+                category: "Tinh chất cấp nước hạt trà xanh (Hyaluronic Serum - Tinh chất Hyaluronic cấp nước)[cite: 1]",
+                capacity: "80ml[cite: 1]",
+                priceStr: "560.000 – 680.000 VNĐ[cite: 1]",
+                priceNum: 620000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Innisfree+Green+Tea",
+                desc: "Tinh chất cấp nước với chiết xuất trà xanh và Hyaluronic Acid giúp bổ sung độ ẩm, duy trì làn da mềm mại, căng mịn và hỗ trợ củng cố hàng rào bảo vệ da.[cite: 1]",
+                usage: "Cấp ẩm, giữ nước, làm mềm da và giúp da căng mịn hơn.[cite: 1]",
+                target: "Người có da khô, thiếu nước, da dễ khô căng hoặc muốn tăng cường dưỡng ẩm.[cite: 1]",
+                skintype: "Mọi loại da, đặc biệt da khô và da thiếu nước.[cite: 1]",
+                ingredients: "Chiết xuất trà xanh Jeju, Green Tea Seed Oil, Hyaluronic Acid.[cite: 1]",
+                howtouse: "Sau bước toner, lấy một lượng vừa đủ thoa đều lên mặt và vỗ nhẹ cho sản phẩm thẩm thấu. Sử dụng sáng và tối.[cite: 1]"
+            },
+            {
+                id: 39, brand: "Innisfree",
+                name: "Tone Up No Sebum Sunscreen EX SPF50+[cite: 1]",
+                category: "Kem chống nắng nâng tông trắng hồng (Tone Up Sunscreen - Kem chống nắng nâng tông)[cite: 1]",
+                capacity: "50ml[cite: 1]",
+                priceStr: "280.000 – 350.000 VNĐ[cite: 1]",
+                priceNum: 315000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Innisfree+Tone+Up",
+                desc: "Kem chống nắng SPF50+ giúp bảo vệ da trước tia UV, đồng thời tạo hiệu ứng nâng tông và hỗ trợ kiểm soát dầu, mang lại lớp nền sáng mịn, tự nhiên.[cite: 1]",
+                usage: "Chống nắng, nâng tông da, kiểm soát dầu và giảm tình trạng bóng nhờn.[cite: 1]",
+                target: "Người muốn kết hợp chống nắng với hiệu ứng nâng tông nhẹ và làm lớp lót trang điểm.[cite: 1]",
+                skintype: "Da dầu, da hỗn hợp.[cite: 1]",
+                ingredients: "Màng lọc chống nắng SPF50+, khoáng chất và các thành phần kiểm soát bã nhờn.[cite: 1]",
+                howtouse: "Thoa một lượng vừa đủ lên mặt và cổ ở bước cuối của chu trình chăm sóc da buổi sáng, trước khi ra nắng. Thoa lại khi cần thiết.[cite: 1]"
+            },
+            {
+                id: 40, brand: "Innisfree",
+                name: "Jeju Volcanic Pore BHA Cleansing Foam[cite: 1]",
+                category: "Sữa rửa mặt làm sạch sâu se lỗ chân lông (Cleansing Foam - Sữa rửa mặt tạo bọt)[cite: 1]",
+                capacity: "150g[cite: 1]",
+                priceStr: "210.000 – 260.000 VNĐ[cite: 1]",
+                priceNum: 235000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Innisfree+Volcanic+Foam",
+                desc: "Sữa rửa mặt chứa tro núi lửa Jeju và BHA giúp làm sạch bụi bẩn, dầu thừa và tạp chất, đồng thời hỗ trợ làm sạch lỗ chân lông và loại bỏ tế bào chết trên bề mặt da.[cite: 1]",
+                usage: "Làm sạch sâu, kiểm soát dầu, hỗ trợ thông thoáng lỗ chân lông và loại bỏ tế bào chết.[cite: 1]",
+                target: "Người có da dầu, da hỗn hợp, lỗ chân lông dễ bít tắc.[cite: 1]",
+                skintype: "Da dầu, da hỗn hợp, da dễ bít tắc.[cite: 1]",
+                ingredients: "Tro núi lửa Jeju, BHA và các thành phần làm sạch.[cite: 1]",
+                howtouse: "Làm ướt mặt, lấy một lượng vừa đủ tạo bọt rồi massage nhẹ nhàng trên da. Rửa sạch với nước và lau khô.[cite: 1]"
+            },
+            {
+                id: 41, brand: "Maybelline",
+                name: "Lash Sensational Sky High Mascara[cite: 1]",
+                category: "Chuốt mi tơi dài và cong vút (Mascara - Chuốt mi)[cite: 1]",
+                capacity: "6ml[cite: 1]",
+                priceStr: "210.000 – 270.000 VNĐ[cite: 1]",
+                priceNum: 240000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Maybelline+Sky+High",
+                desc: "Mascara (Chuốt mi) giúp làm dài, làm cong và tạo độ tơi cho hàng mi, mang lại hiệu ứng mi dài và nổi bật hơn mà vẫn giữ cảm giác nhẹ mắt.[cite: 1]",
+                usage: "Làm dài mi, tạo độ cong, giúp hàng mi trông dày và tơi hơn.[cite: 1]",
+                target: "Người muốn tạo hiệu ứng mi dài, cong và nổi bật khi trang điểm.[cite: 1]",
+                skintype: "Mọi loại mi, đặc biệt mi ngắn và thưa.[cite: 1]",
+                ingredients: "Sợi micro-fiber, chiết xuất tre.[cite: 1]",
+                howtouse: "Dùng cọ chuốt từ chân mi đến ngọn mi theo chuyển động zigzag. Có thể chuốt nhiều lớp để tăng độ dài và độ dày.[cite: 1]"
+            },
+            {
+                id: 42, brand: "Maybelline",
+                name: "Fit Me Matte + Poreless Foundation[cite: 1]",
+                category: "Kem nền kiềm dầu mịn lì tự nhiên (Foundation - Kem nền)[cite: 1]",
+                capacity: "30ml[cite: 1]",
+                priceStr: "200.000 – 260.000 VNĐ[cite: 1]",
+                priceNum: 230000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Maybelline+Fit+Me",
+                desc: "Kem nền dạng lỏng giúp tạo lớp nền lì tự nhiên, hỗ trợ kiểm soát dầu và làm mờ vẻ ngoài của lỗ chân lông, mang lại lớp nền mịn và đều màu.[cite: 1]",
+                usage: "Che phủ khuyết điểm, kiểm soát dầu, làm mịn bề mặt da và tạo lớp nền tự nhiên.[cite: 1]",
+                target: "Người muốn lớp nền mịn lì, tự nhiên và hạn chế bóng dầu.[cite: 1]",
+                skintype: "Da thường, da hỗn hợp và da dầu.[cite: 1]",
+                ingredients: "Micro-powders giúp kiểm soát dầu và tạo hiệu ứng làm mịn.[cite: 1]",
+                howtouse: "Lấy một lượng vừa đủ chấm lên mặt, sau đó dùng mút, cọ hoặc tay tán đều từ trong ra ngoài.[cite: 1]"
+            },
+            {
+                id: 43, brand: "Maybelline",
+                name: "Superstay Vinyl Ink Longwear Liquid Lipstick[cite: 1]",
+                category: "Son bóng bền màu khóa chặt 16h (Lip Tint/Liquid Lipstick - Son bóng/Son kem)[cite: 1]",
+                capacity: "4.2ml[cite: 1]",
+                priceStr: "240.000 – 300.000 VNĐ[cite: 1]",
+                priceNum: 270000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Maybelline+Vinyl+Ink",
+                desc: "Son môi dạng lỏng tạo hiệu ứng bóng, cho màu sắc nổi bật và độ bám lâu dài. Công thức giúp màu son hạn chế phai và lem trong nhiều giờ.[cite: 1]",
+                usage: "Tạo màu môi, tạo hiệu ứng bóng mượt và duy trì màu son lâu.[cite: 1]",
+                target: "Người yêu thích son môi có độ bóng và màu sắc bền lâu.[cite: 1]",
+                skintype: "Mọi loại môi, đặc biệt môi cần hiệu ứng căng bóng.[cite: 1]",
+                ingredients: "Công nghệ Color Lock giúp giữ màu lâu.[cite: 1]",
+                howtouse: "Lắc đều khoảng 5 giây trước khi dùng, dùng đầu cọ thoa đều lên môi. Để son khô tự nhiên và hạn chế chạm môi trong vài phút đầu.[cite: 1]"
+            },
+            {
+                id: 44, brand: "Maybelline",
+                name: "Instant Age Rewind Eraser Multi-Use Concealer[cite: 1]",
+                category: "Bút mút che khuyết điểm đa năng (Concealer - Kem che khuyết điểm)[cite: 1]",
+                capacity: "6ml[cite: 1]",
+                priceStr: "180.000 – 240.000 VNĐ[cite: 1]",
+                priceNum: 210000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Maybelline+Age+Rewind",
+                desc: "Kem che khuyết điểm dạng bút có đầu mút giúp che phủ quầng thâm, khuyết điểm và vùng da không đều màu, đồng thời tạo hiệu ứng da mịn và tươi sáng hơn.[cite: 1]",
+                usage: "Che quầng thâm, mụn và các khuyết điểm; hỗ trợ làm sáng vùng da dưới mắt.[cite: 1]",
+                target: "Người cần che quầng thâm, mụn, vết thâm hoặc khuyết điểm trên khuôn mặt.[cite: 1]",
+                skintype: "Mọi loại da.[cite: 1]",
+                ingredients: "Haloxyl và Goji Berry Extract.[cite: 1]",
+                howtouse: "Xoay phần thân để lấy sản phẩm ra đầu mút, chấm lên vùng cần che rồi dùng tay, mút hoặc cọ tán đều.[cite: 1]"
+            },
+            {
+                id: 45, brand: "Maybelline",
+                name: "Hyper Easy Liquid Eyeliner[cite: 1]",
+                category: "Bút dạ kẻ mắt nước nét mảnh chống lem (Liquid Eyeliner - Kẻ mắt nước)[cite: 1]",
+                capacity: "0.5g[cite: 1]",
+                priceStr: "170.000 – 220.000 VNĐ[cite: 1]",
+                priceNum: 195000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Maybelline+Hyper+Easy",
+                desc: "Bút kẻ mắt dạng nước với đầu cọ linh hoạt giúp tạo đường kẻ sắc nét, dễ thao tác và hỗ trợ duy trì đường kẻ lâu trong suốt ngày dài.[cite: 1]",
+                usage: "Kẻ viền mắt, tạo đường eyeliner (viền mắt) mảnh hoặc đậm, giúp đôi mắt trông sắc nét và nổi bật hơn.[cite: 1]",
+                target: "Người mới trang điểm hoặc người muốn tạo đường eyeliner nhanh và chính xác.[cite: 1]",
+                skintype: "Phù hợp mọi loại da, đặc biệt vùng mắt dễ tiết dầu.[cite: 1]",
+                ingredients: "Công thức chống lem, chống trôi và đầu cọ linh hoạt.[cite: 1]",
+                howtouse: "Kẻ từ khóe mắt theo sát đường chân mi đến đuôi mắt. Có thể điều chỉnh độ dày tùy kiểu trang điểm.[cite: 1]"
+            },
+            {
+                id: 46, brand: "Dear, Klairs",
+                name: "Supple Preparation Unscented Toner[cite: 1]",
+                category: "Nước hoa hồng không mùi cấp ẩm sâu (Toner - Nước cân bằng/Hoa hồng)[cite: 1]",
+                capacity: "180ml[cite: 1]",
+                priceStr: "270.000 – 340.000 VNĐ[cite: 1]",
+                priceNum: 305000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Klairs+Unscented+Toner",
+                desc: "Nước cân bằng không mùi giúp cấp ẩm, làm dịu và cân bằng da sau bước làm sạch, hỗ trợ chuẩn bị da cho các bước dưỡng tiếp theo.[cite: 1]",
+                usage: "Cấp ẩm, làm dịu da, hỗ trợ cân bằng độ ẩm và giúp da mềm mịn hơn.[cite: 1]",
+                target: "Người có da khô, thiếu nước, da nhạy cảm hoặc muốn bổ sung độ ẩm sau khi rửa mặt.[cite: 1]",
+                skintype: "Mọi loại da, đặc biệt da khô và da nhạy cảm.[cite: 1]",
+                ingredients: "Hyaluronic Acid, Centella Asiatica Extract, Licorice Root Extract, Phyto-Oligo.[cite: 1]",
+                howtouse: "Sau khi rửa mặt, lấy một lượng vừa đủ ra lòng bàn tay hoặc bông cotton, thoa đều lên mặt và vỗ nhẹ cho thẩm thấu.[cite: 1]"
+            },
+            {
+                id: 47, brand: "Dear, Klairs",
+                name: "Freshly Juiced Vitamin Drop[cite: 1]",
+                category: "Serum dưỡng sáng da mờ thâm Vitamin C (Vitamin Drop - Tinh chất Vitamin)[cite: 1]",
+                capacity: "35ml[cite: 1]",
+                priceStr: "310.000 – 380.000 VNĐ[cite: 1]",
+                priceNum: 345000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Klairs+Vitamin+Drop",
+                desc: "Serum (Tinh chất) Vitamin C giúp chăm sóc làn da xỉn màu, hỗ trợ làm sáng và cải thiện tình trạng da không đều màu, đồng thời cung cấp dưỡng chất cho da.[cite: 1]",
+                usage: "Hỗ trợ làm sáng da, cải thiện thâm sạm, đều màu da và chống oxy hóa.[cite: 1]",
+                target: "Người có da xỉn màu, không đều màu hoặc có vết thâm sau mụn.[cite: 1]",
+                skintype: "Mọi loại da, kể cả da nhạy cảm; nên sử dụng từ từ nếu da chưa quen Vitamin C.[cite: 1]",
+                ingredients: "Pure Vitamin C 5%, Centella Asiatica Extract, Vitamin E.[cite: 1]",
+                howtouse: "Sau bước toner, lấy 2–3 giọt thoa đều lên mặt, tránh vùng mắt và môi. Có thể dùng sáng hoặc tối; ban ngày nên kết hợp kem chống nắng.[cite: 1]"
+            },
+            {
+                id: 48, brand: "Dear, Klairs",
+                name: "Midnight Blue Calming Cream[cite: 1]",
+                category: "Kem phục hồi làm dịu vết đỏ kích ứng (Calming Cream - Kem làm dịu)[cite: 1]",
+                capacity: "30ml[cite: 1]",
+                priceStr: "330.000 – 390.000 VNĐ[cite: 1]",
+                priceNum: 360000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Klairs+Blue+Cream",
+                desc: "Kem dưỡng làm dịu và chăm sóc làn da nhạy cảm, dễ kích ứng, giúp giảm cảm giác nóng rát và hỗ trợ phục hồi làn da sau các tác động từ môi trường.[cite: 1]",
+                usage: "Làm dịu da, giảm cảm giác khó chịu, hỗ trợ phục hồi và bảo vệ hàng rào da.[cite: 1]",
+                target: "Người có da nhạy cảm, dễ đỏ, kích ứng hoặc da cần phục hồi.[cite: 1]",
+                skintype: "Mọi loại da, đặc biệt da nhạy cảm và da dễ kích ứng.[cite: 1]",
+                ingredients: "Guaiazulene, Centella Asiatica Extract, Ceramide NP, Ectoin.[cite: 1]",
+                howtouse: "Sau các bước dưỡng da, lấy một lượng vừa đủ thoa lên vùng da cần làm dịu hoặc toàn mặt. Có thể sử dụng sáng và tối.[cite: 1]"
+            },
+            {
+                id: 49, brand: "Dear, Klairs",
+                name: "Gentle Black Deep Cleansing Oil[cite: 1]",
+                category: "Dầu tẩy trang làm sạch sâu dịu nhẹ (Cleansing Oil - Dầu tẩy trang)[cite: 1]",
+                capacity: "150ml[cite: 1]",
+                priceStr: "320.000 – 400.000 VNĐ[cite: 1]",
+                priceNum: 360000,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Klairs+Cleansing+Oil",
+                desc: "Dầu tẩy trang dịu nhẹ giúp hòa tan lớp trang điểm, kem chống nắng, dầu thừa và bụi bẩn, đồng thời làm sạch da mà không gây cảm giác khô căng.[cite: 1]",
+                usage: "Tẩy trang, làm sạch kem chống nắng và lớp trang điểm, loại bỏ dầu thừa và tạp chất trên da.[cite: 1]",
+                target: "Người thường xuyên sử dụng kem chống nắng, trang điểm hoặc cần làm sạch da cuối ngày.[cite: 1]",
+                skintype: "Mọi loại da, đặc biệt da khô, da thường và da nhạy cảm.[cite: 1]",
+                ingredients: "Dầu hạt nho, dầu hạt mè đen, dầu hạt jojoba, dầu hạt hướng dương.[cite: 1]",
+                howtouse: "Cho một lượng vừa đủ vào tay khô, massage nhẹ trên mặt khô để hòa tan lớp trang điểm. Thêm một ít nước để nhũ hóa thành dạng sữa rồi rửa sạch với nước.[cite: 1]"
+            },
+            {
+                id: 50, brand: "Dear, Klairs",
+                name: "Rich Moist Soothing Cream[cite: 1]",
+                category: "Kem dưỡng ẩm cấp nước chuyên sâu cho da khô (Soothing Cream - Kem dưỡng làm dịu)[cite: 1]",
+                capacity: "80ml[cite: 1]",
+                priceStr: "Liên hệ[cite: 1]",
+                priceNum: 0,
+                image: "https://via.placeholder.com/300x300/fce4ec/d81b60?text=Klairs+Rich+Moist",
+                desc: "Kem dưỡng ẩm giúp bổ sung và duy trì độ ẩm cho da, làm mềm vùng da khô và hỗ trợ củng cố hàng rào bảo vệ da, mang lại cảm giác mềm mại và dễ chịu.[cite: 1]",
+                usage: "Cấp ẩm, khóa ẩm, làm mềm da và hỗ trợ phục hồi hàng rào bảo vệ da.[cite: 1]",
+                target: "Người có da khô, thiếu ẩm hoặc da thường xuyên bị khô căng.[cite: 1]",
+                skintype: "Da khô, da thường, da hỗn hợp thiên khô.[cite: 1]",
+                ingredients: "Centella Asiatica Extract, Ceramide NP, Hyaluronic Acid, Shea Butter.[cite: 1]",
+                howtouse: "Sau serum, lấy một lượng vừa đủ thoa đều lên mặt và cổ, massage nhẹ cho sản phẩm thẩm thấu. Sử dụng sáng và tối.[cite: 1]"
+            }
+        ];
+
+        // Khởi tạo và Render sản phẩm
+        document.addEventListener("DOMContentLoaded", () => {
+            renderProducts(products);
+        });
+
+        function renderProducts(productList) {
+            const grid = document.getElementById("all-products-grid");
+            grid.innerHTML = "";
+            document.getElementById("product-count").innerText = productList.length;
+
+            if (productList.length === 0) {
+                grid.innerHTML = `<p class="text-center text-muted w-100 my-5">Không tìm thấy sản phẩm nào.</p>`;
+                return;
+            }
+
+            productList.forEach(p => {
+                grid.innerHTML += `
+                <div class="col-xl-3 col-lg-4 col-md-6 mb-4 animate__animated animate__fadeIn">
+                    <div class="card product-card h-100 rounded-4 overflow-hidden border-0 shadow-sm">
+                        <img src="${p.image}" class="card-img-top p-3 bg-white" alt="${p.name}">
+                        <div class="card-body d-flex flex-column bg-light">
+                            <span class="badge bg-pink-soft text-pink-dark mb-2 align-self-start">${p.brand}</span>
+                            <h5 class="card-title fw-bold text-dark fs-6 mb-2">${p.name}</h5>
+                            <p class="text-muted small mb-3">${p.category}</p>
+                            <h6 class="text-pink-main fw-bold mt-auto mb-3">${p.priceStr}</h6>
+                            <button class="btn btn-outline-veriglow w-100 rounded-pill" onclick="showDetail(${p.id})">
+                                <i class="fas fa-search me-1"></i> Xem chi tiết
+                            </button>
+                        </div>
+                    </div>
+                </div>`;
+            });
+        }
+
+        // Lọc theo thương hiệu
+        window.filterByBrand = function(brand, btnElement) {
+            // Đổi active state của button
+            const buttons = document.querySelectorAll("#brandFilterContainer button");
+            buttons.forEach(btn => btn.classList.remove("active", "text-white", "bg-pink-main"));
+            btnElement.classList.add("active", "text-white", "bg-pink-main");
+
+            if (brand === 'all') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.brand.includes(brand));
+                renderProducts(filtered);
+            }
+        };
+
+        // Xem chi tiết Modal
+        window.showDetail = function(id) {
+            const p = products.find(item => item.id === id);
+            if (!p) return;
+
+            document.getElementById("detail-title").innerText = p.name;
+            document.getElementById("detail-img").src = p.image;
+            document.getElementById("detail-price").innerText = p.priceStr;
+            document.getElementById("detail-brand").innerText = p.brand;
+            document.getElementById("detail-category").innerText = p.category;
+            document.getElementById("detail-capacity").innerText = p.capacity;
+            document.getElementById("detail-desc").innerText = p.desc;
+            document.getElementById("detail-usage").innerText = p.usage;
+            document.getElementById("detail-target").innerText = p.target;
+            document.getElementById("detail-skintype").innerText = p.skintype;
+            document.getElementById("detail-ingredients").innerText = p.ingredients;
+            document.getElementById("detail-howtouse").innerText = p.howtouse;
+
+            const btnAdd = document.getElementById("detail-add-cart-btn");
+            btnAdd.onclick = () => addToCart(id);
+
+            const modal = new bootstrap.Modal(document.getElementById('productDetailModal'));
+            modal.show();
+        };
+
+        // Giỏ hàng đơn giản
+        let cart = [];
+
+        window.addToCart = function(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
+            
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ ...product, qty: 1 });
+            }
+            updateCartUI();
+            
+            // Ẩn modal chi tiết nếu đang mở và hiện modal giỏ hàng
+            const detailModalEl = document.getElementById('productDetailModal');
+            const detailModal = bootstrap.Modal.getInstance(detailModalEl);
+            if(detailModal) {
+                detailModal.hide();
+                setTimeout(() => {
+                    new bootstrap.Modal(document.getElementById('cartModal')).show();
+                }, 400);
+            } else {
+                new bootstrap.Modal(document.getElementById('cartModal')).show();
+            }
+        };
+
+        function updateCartUI() {
+            const body = document.getElementById("cart-body-content");
+            const badge = document.getElementById("cart-badge");
+            const headerCount = document.getElementById("cart-header-count");
+            const totalEl = document.getElementById("cart-total-price");
+            
+            let totalQty = 0;
+            let totalPrice = 0;
+            
+            if (cart.length === 0) {
+                body.innerHTML = `<p class="text-center text-muted mt-5">Giỏ hàng của bạn đang trống.</p>`;
+            } else {
+                body.innerHTML = "";
+                cart.forEach((item, index) => {
+                    totalQty += item.qty;
+                    totalPrice += (item.priceNum * item.qty);
+                    body.innerHTML += `
+                    <div class="d-flex align-items-center mb-3 pb-3 border-bottom">
+                        <img src="${item.image}" width="60" class="rounded me-3 border" alt="${item.name}">
+                        <div class="flex-grow-1">
+                            <h6 class="mb-1 text-dark fs-6" style="font-size: 0.9rem !important;">${item.name}</h6>
+                            <small class="text-pink-main fw-bold">${item.priceNum.toLocaleString('vi-VN')}đ</small>
+                            <div class="d-flex align-items-center mt-2">
+                                <button class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="changeQty(${index}, -1)">-</button>
+                                <span class="mx-2">${item.qty}</span>
+                                <button class="btn btn-sm btn-outline-secondary py-0 px-2" onclick="changeQty(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                        <button class="btn text-danger ms-2" onclick="removeItem(${index})"><i class="fas fa-trash"></i></button>
+                    </div>`;
+                });
+            }
+            
+            badge.innerText = totalQty;
+            headerCount.innerText = totalQty;
+            totalEl.innerText = totalPrice.toLocaleString('vi-VN') + "đ";
+        }
+
+        window.changeQty = function(index, amount) {
+            cart[index].qty += amount;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        };
+
+        window.removeItem = function(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        };
+
+        window.processCheckout = function() {
+            if (cart.length === 0) {
+                alert("Giỏ hàng của bạn đang trống!");
+                return;
+            }
+            alert("Đơn hàng của bạn đang được xử lý. Cảm ơn bạn đã mua sắm tại Veriglow Cosmetics!");
+            cart = [];
+            updateCartUI();
+            bootstrap.Modal.getInstance(document.getElementById('cartModal')).hide();
+        };
+    </script>
+</body>
+</html>

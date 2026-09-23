@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Chăm Sóc Da | VeriGlow Cosmetics</title>
+
+    <!-- Thư viện CSS Bootstrap & FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS Tùy chỉnh -->
+    <style>
+        :root {
+            --vg-pink-main: #f06292;
+            --vg-pink-light: #f8bbd0;
+            --vg-pink-lightest: #fce4ec;
+            --vg-pink-soft: #ffb6c1;
+            --vg-pink-dark: #d81b60;
+            --text-main: #333333;
+            --text-muted: #6c757d;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f9f9fc;
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        .brand-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Utility Classes */
+        .text-pink-main { color: var(--vg-pink-main) !important; }
+        .text-pink-dark { color: var(--vg-pink-dark) !important; }
+        .bg-pink-lightest { background-color: var(--vg-pink-lightest) !important; }
+        .bg-pink-main { background-color: var(--vg-pink-main) !important; color: white; }
+
+        /* Nút bấm (Button) */
+        .btn-veriglow {
+            background-color: var(--vg-pink-main);
+            color: white;
+            font-weight: 700;
+            padding: 10px 24px;
+            border-radius: 30px;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(240, 98, 146, 0.2);
+        }
+        .btn-veriglow:hover {
+            background-color: var(--vg-pink-dark);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(216, 27, 96, 0.3);
+        }
+
+        /* Navbar (Thanh điều hướng) */
+        .navbar {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            padding: 15px 0;
+        }
+        .nav-link {
+            font-weight: 600;
+            color: var(--text-main);
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--vg-pink-dark) !important;
+        }
+
+        /* Hero Section (Phần đầu trang) */
+        .blog-hero {
+            background: linear-gradient(135deg, rgba(252, 228, 236, 0.9) 0%, rgba(248, 187, 208, 0.9) 100%), 
+                        url('https://images.unsplash.com/photo-1556228578-0d85b1a4d571?q=80&w=1920&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            padding: 80px 0;
+            text-align: center;
+            border-bottom: 3px solid var(--vg-pink-main);
+        }
+
+        /* Blog Post Card (Thẻ bài viết) */
+        .blog-post {
+            border: none;
+            border-radius: 16px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            margin-bottom: 40px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+        .blog-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--vg-pink-lightest);
+        }
+        .blog-content {
+            padding: 40px;
+        }
+        .blog-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--vg-pink-dark);
+            margin-bottom: 20px;
+        }
+        .blog-meta {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .blog-meta i {
+            color: var(--vg-pink-main);
+        }
+        
+        /* Product Reference Box (Hộp sản phẩm tham khảo) */
+        .product-ref-box {
+            background-color: #fff5f8;
+            border-left: 4px solid var(--vg-pink-main);
+            padding: 20px 25px;
+            border-radius: 0 8px 8px 0;
+            margin: 25px 0;
+        }
+        .product-ref-box h5 {
+            color: var(--vg-pink-dark);
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+        .product-ref-box ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+        .product-ref-box li {
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        /* Keyword Highlight (Làm nổi bật từ khóa) */
+        .keyword-tag {
+            display: inline-block;
+            background-color: var(--vg-pink-lightest);
+            color: var(--vg-pink-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        /* Sidebar Styles (Thanh bên) */
+        .sidebar-widget {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.03);
+            margin-bottom: 30px;
+        }
+        .widget-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--vg-pink-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--vg-pink-lightest);
+        }
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .category-list li {
+            margin-bottom: 12px;
+        }
+        .category-list a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            transition: color 0.3s ease;
+        }
+        .category-list a:hover {
+            color: var(--vg-pink-main);
+        }
+        .tag-cloud a {
+            display: inline-block;
+            background-color: #f1f1f1;
+            color: var(--text-main);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            text-decoration: none;
+            margin: 0 5px 10px 0;
+            transition: all 0.3s ease;
+        }
+        .tag-cloud a:hover {
+            background-color: var(--vg-pink-main);
+            color: white;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #fff;
+            border-top: 1px solid #eaeaea;
+            padding: 60px 0 20px;
+            margin-top: 60px;
+        }
+        .footer-heading {
+            font-weight: 800;
+            color: var(--vg-pink-dark);
+            margin-bottom: 20px;
+        }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+        .footer-links a:hover {
+            color: var(--vg-pink-main);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand text-pink-dark brand-font fs-3 fw-bold" href="#">
+                <i class="fas fa-leaf text-pink-main me-2"></i>VeriGlow
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">Sản Phẩm</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="blog.html">Blog Làm Đẹp</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Liên Hệ</a>
+                    </li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="#" class="text-dark fs-5"><i class="fas fa-search"></i></a>
+                    <a href="#" class="text-dark fs-5 position-relative">
+                        <i class="fas fa-shopping-bag text-pink-dark"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="blog-hero">
+        <div class="container">
+            <h1 class="display-4 brand-font fw-bold text-pink-dark mb-3 animate__animated animate__fadeInDown">
+                VeriGlow Beauty Blog
+            </h1>
+            <p class="lead text-dark fw-bold mb-0 animate__animated animate__fadeInUp">
+                Cẩm nang làm đẹp, Skincare (Chăm sóc da) khoa học & Bí quyết tỏa sáng mỗi ngày
+            </p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <div class="row">
+            
+            <!-- Cột Trái: Danh sách bài viết -->
+            <div class="col-lg-8">
+                
+                <!-- Bài 1 -->
+                <article class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=1000&auto=format&fit=crop" alt="Skincare cho người mới bắt đầu" class="blog-image">
+                    <div class="blog-content">
+                        <span class="keyword-tag"><i class="fas fa-tag me-1"></i> skincare cho người mới bắt đầu</span>
+                        <h2 class="blog-title brand-font">Bài 1. Skincare (Chăm sóc da) cho người mới bắt đầu: 4 bước cơ bản</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> 24/09/2026</span>
+                            <span><i class="far fa-user"></i> Admin VeriGlow</span>
+                        </div>
+                        <p>Nếu mới bắt đầu chăm sóc da, bạn không cần sử dụng quá nhiều sản phẩm. Một routine (Quy trình dưỡng da) cơ bản có thể bắt đầu với làm sạch, dưỡng ẩm và chống nắng; sau đó bổ sung sản phẩm phù hợp với tình trạng da khi cần.</p>
+                        
+                        <h5 class="fw-bold mt-4 text-pink-main">4 Bước Cơ Bản:</h5>
+                        <ul class="list-group list-group-flush mb-4">
+                            <li class="list-group-item bg-transparent border-0 ps-0">
+                                <strong>Bước 1 – Làm sạch:</strong> Sử dụng sản phẩm làm sạch phù hợp để loại bỏ bụi bẩn, dầu thừa và kem chống nắng.
+                            </li>
+                            <li class="list-group-item bg-transparent border-0 ps-0">
+                                <strong>Bước 2 – Dưỡng ẩm:</strong> Dưỡng ẩm giúp duy trì độ ẩm và hỗ trợ hàng rào bảo vệ da.
+                            </li>
+                            <li class="list-group-item bg-transparent border-0 ps-0">
+                                <strong>Bước 3 – Sản phẩm đặc trị nếu cần:</strong> Có thể lựa chọn sản phẩm phù hợp với vấn đề da cụ thể. Người mới nên tìm hiểu kỹ cách dùng và tránh sử dụng quá nhiều active (Hoạt chất) cùng lúc.
+                            </li>
+                            <li class="list-group-item bg-transparent border-0 ps-0">
+                                <strong>Bước 4 – Chống nắng vào ban ngày:</strong> Kem chống nắng là bước quan trọng trong routine (Quy trình dưỡng da) ban ngày, đặc biệt khi thường xuyên tiếp xúc với ánh nắng.
+                            </li>
+                        </ul>
+
+                        <div class="product-ref-box">
+                            <h5><i class="fas fa-box-open me-2"></i> Sản phẩm tham khảo:</h5>
+                            <ul>
+                                <li>CeraVe Hydrating Facial Cleanser (Sữa rửa mặt cấp ẩm)</li>
+                                <li>La Roche-Posay Cicaplast Baume B5+ (Kem dưỡng phục hồi)</li>
+                                <li>L’Oréal Paris Revitalift Pure Hyaluronic Acid 1.5% (Tinh chất cấp ẩm)</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn btn-veriglow mt-2">Khám phá các sản phẩm chăm sóc da phù hợp tại VeriGlow</a>
+                    </div>
+                </article>
+
+                <!-- Bài 2 -->
+                <article class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1556228720-1c2f6d0f6224?q=80&w=1000&auto=format&fit=crop" alt="Chăm sóc da dầu mụn" class="blog-image">
+                    <div class="blog-content">
+                        <span class="keyword-tag"><i class="fas fa-tag me-1"></i> chăm sóc da dầu mụn</span>
+                        <h2 class="blog-title brand-font">Bài 2. Cách chăm sóc da dầu mụn đúng cách tại nhà</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> 22/09/2026</span>
+                            <span><i class="far fa-user"></i> Admin VeriGlow</span>
+                        </div>
+                        <p>Da dầu mụn cần được làm sạch nhưng không nên chà xát hoặc sử dụng sản phẩm quá mạnh. Routine (Quy trình dưỡng da) nên tập trung vào làm sạch dịu nhẹ, dưỡng ẩm phù hợp và bảo vệ da khỏi ánh nắng.</p>
+                        <p>Thương hiệu La Roche-Posay giới thiệu dòng <strong>EFFACLAR</strong> dành cho da nhờn bị mụn; trong đó EFFACLAR Purifying Foaming Gel (Gel tạo bọt) được giới thiệu là sản phẩm làm sạch dịu nhẹ và giảm bã nhờn cho da dầu mụn.</p>
+                        
+                        <div class="product-ref-box">
+                            <h5><i class="fas fa-box-open me-2"></i> Sản phẩm tham khảo:</h5>
+                            <ul>
+                                <li>La Roche-Posay Effaclar Purifying Foaming Gel</li>
+                                <li>Bioderma Sébium H2O (Nước tẩy trang làm sạch bã nhờn)</li>
+                                <li>CeraVe Foaming Facial Cleanser</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn btn-veriglow mt-2">Tìm hiểu sản phẩm dành cho da dầu mụn tại VeriGlow</a>
+                    </div>
+                </article>
+
+                <!-- Bài 3 -->
+                <article class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1000&auto=format&fit=crop" alt="Mỹ phẩm cho da nhạy cảm" class="blog-image">
+                    <div class="blog-content">
+                        <span class="keyword-tag"><i class="fas fa-tag me-1"></i> mỹ phẩm cho da nhạy cảm</span>
+                        <h2 class="blog-title brand-font">Bài 3. Da nhạy cảm nên chọn mỹ phẩm như thế nào?</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> 20/09/2026</span>
+                            <span><i class="far fa-user"></i> Chuyên gia Da liễu</span>
+                        </div>
+                        <p>Khi lựa chọn mỹ phẩm cho da nhạy cảm (Sensitive skin), nên ưu tiên sản phẩm có thông tin thành phần rõ ràng và được kiểm nghiệm phù hợp với loại da. Không nên thay đổi quá nhiều sản phẩm cùng lúc.</p>
+                        <p>Người dùng nên đọc hướng dẫn của nhà sản xuất, patch test (Thử sản phẩm trên một vùng da nhỏ) phù hợp theo hướng dẫn và theo dõi phản ứng của da trước khi thoa toàn mặt.</p>
+                        
+                        <div class="product-ref-box">
+                            <h5><i class="fas fa-box-open me-2"></i> Sản phẩm tham khảo:</h5>
+                            <ul>
+                                <li>Bioderma Sensibio H2O (Nước tẩy trang dịu nhẹ)</li>
+                                <li>CeraVe Hydrating Facial Cleanser</li>
+                                <li>Dear, Klairs Supple Preparation Unscented Toner (Nước cân bằng không mùi)</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn btn-veriglow mt-2">Xem danh sách mỹ phẩm dành cho da nhạy cảm tại VeriGlow</a>
+                    </div>
+                </article>
+
+                <!-- Bài 4 -->
+                <article class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=1000&auto=format&fit=crop" alt="AHA BHA LHA" class="blog-image">
+                    <div class="blog-content">
+                        <span class="keyword-tag"><i class="fas fa-tag me-1"></i> AHA BHA LHA</span>
+                        <h2 class="blog-title brand-font">Bài 4. AHA, BHA và LHA khác nhau như thế nào?</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> 18/09/2026</span>
+                            <span><i class="far fa-user"></i> Admin VeriGlow</span>
+                        </div>
+                        <p>AHA (Alpha Hydroxy Acid - Tẩy tế bào chết trên bề mặt), BHA (Beta Hydroxy Acid - Tẩy tế bào chết sâu trong lỗ chân lông) và LHA (Capryloyl Salicylic Acid - Dẫn xuất dịu nhẹ của BHA) là những thành phần thường xuất hiện trong sản phẩm chăm sóc da nhưng có đặc điểm và mục đích sử dụng khác nhau.</p>
+                        <p>Người mới bắt đầu nên tìm hiểu kỹ thành phần, cách dùng và khả năng phù hợp với làn da trước khi lựa chọn các sản phẩm exfoliant (Tẩy tế bào chết hóa học) này.</p>
+                        <p>Ví dụ, La Roche-Posay có sản phẩm EFFACLAR Ultra Concentrated Serum sử dụng phức hợp AHA – BHA – LHA kết hợp với Niacinamide để tối ưu hiệu quả.</p>
+                        
+                        <div class="product-ref-box">
+                            <h5><i class="fas fa-box-open me-2"></i> Sản phẩm tham khảo:</h5>
+                            <ul>
+                                <li>La Roche-Posay Effaclar Ultra Concentrated Serum</li>
+                                <li>Paula’s Choice Skin Perfecting 2% BHA Liquid Exfoliant (Dung dịch tẩy da chết)</li>
+                                <li>Innisfree Jeju Volcanic Pore BHA Cleansing Foam</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn btn-veriglow mt-2">Tìm hiểu thêm các sản phẩm chứa hoạt chất tại VeriGlow</a>
+                    </div>
+                </article>
+
+                <!-- Bài 5 -->
+                <article class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=1000&auto=format&fit=crop" alt="Niacinamide" class="blog-image">
+                    <div class="blog-content">
+                        <span class="keyword-tag"><i class="fas fa-tag me-1"></i> niacinamide có tác dụng gì</span>
+                        <h2 class="blog-title brand-font">Bài 5. Niacinamide có tác dụng gì cho làn da?</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> 15/09/2026</span>
+                            <span><i class="far fa-user"></i> Biên tập viên Skincare</span>
+                        </div>
+                        <p>Niacinamide, còn gọi là vitamin B3, là thành phần phổ biến trong các sản phẩm chăm sóc da. Thành phần này thường được sử dụng trong các sản phẩm hướng đến việc chăm sóc skin barrier (Hàng rào bảo vệ da) và hỗ trợ làm dịu da, mờ thâm hiệu quả.</p>
+                        <p>La Roche-Posay sử dụng Niacinamide trong một số sản phẩm chăm sóc da đặc trị, trong đó nổi bật có dòng EFFACLAR A.I. hỗ trợ giảm mụn sưng viêm.</p>
+                        
+                        <div class="product-ref-box">
+                            <h5><i class="fas fa-box-open me-2"></i> Sản phẩm tham khảo:</h5>
+                            <ul>
+                                <li>La Roche-Posay Effaclar Ultra Concentrated Serum</li>
+                                <li>Paula’s Choice Clinical 20% Niacinamide Treatment (Tinh chất đặc trị)</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn btn-veriglow mt-2">Khám phá các sản phẩm chứa Niacinamide tại VeriGlow</a>
+                    </div>
+                </article>
+
+                <!-- Bài 6 -->
+                <article class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1526045612212-70cb359f2682?q=80&w=1000&auto=format&fit=crop" alt="Kem chống nắng" class="blog-image">
+                    <div class="blog-content">
+                        <span class="keyword-tag"><i class="fas fa-tag me-1"></i> kem chống nắng</span>
+                        <h2 class="blog-title brand-font">Bài 6. Kem chống nắng – Vì sao cần sử dụng mỗi ngày?</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> 12/09/2026</span>
+                            <span><i class="far fa-user"></i> Admin VeriGlow</span>
+                        </div>
+                        <p>Ánh nắng mặt trời có thể tác động tiêu cực đến làn da, vì vậy sunscreen (Kem chống nắng) là một bước cực kỳ quan trọng trong chăm sóc da ban ngày để ngăn ngừa lão hóa và sạm nám.</p>
+                        <p>Khi lựa chọn kem chống nắng, người dùng nên cân nhắc loại da, nhu cầu sử dụng và kiểm tra kỹ thông tin SPF (Sun Protection Factor - Chỉ số bảo vệ khỏi tia UVB) và PA (Protection Grade of UVA - Chỉ số bảo vệ khỏi tia UVA) in trên bao bì sản phẩm.</p>
+                        
+                        <div class="product-ref-box">
+                            <h5><i class="fas fa-box-open me-2"></i> Sản phẩm tham khảo:</h5>
+                            <ul>
+                                <li>La Roche-Posay Anthelios UVmune 400 Oil Control Gel-Cream</li>
+                                <li>Anessa Perfect UV Sunscreen Skincare Milk N SPF50+ (Sữa chống nắng)</li>
+                                <li>L’Oréal UV Defender Matte & Fresh SPF50+</li>
+                                <li>Cocoon Sữa chống nắng Bí Đao SPF50+</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn btn-veriglow mt-2">Khám phá các sản phẩm chống nắng tại VeriGlow</a>
+                    </div>
+                </article>
+
+                <!-- Bài 7 -->
+                <article class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?q=80&w=1000&auto=format&fit=crop" alt="Lựa chọn sữa rửa mặt" class="blog-image">
+                    <div class="blog-content">
+                        <span class="keyword-tag"><i class="fas fa-tag me-1"></i> sữa rửa mặt phù hợp da</span>
+                        <h2 class="blog-title brand-font">Bài 7. Cách lựa chọn sữa rửa mặt phù hợp với từng loại da</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> 10/09/2026</span>
+                            <span><i class="far fa-user"></i> Chuyên gia Da liễu</span>
+                        </div>
+                        <p>Không phải loại sữa rửa mặt (Cleanser) nào cũng phù hợp với mọi người. Việc làm sạch sai cách có thể gây tổn thương hàng rào bảo vệ tự nhiên. Người dùng nên cân nhắc tình trạng da như da dầu, da khô, da hỗn hợp hoặc da nhạy cảm trước khi lựa chọn kết cấu sản phẩm (dạng gel, dạng sữa, hay tạo bọt).</p>
+                        <p>Ví dụ, EFFACLAR Purifying Foaming Gel (Gel làm sạch tạo bọt) được La Roche-Posay giới thiệu dành cho da dầu mụn và giúp làm sạch dịu nhẹ, loại bỏ và giảm bã nhờn hiệu quả.</p>
+                        
+                        <div class="product-ref-box">
+                            <h5><i class="fas fa-box-open me-2"></i> Sản phẩm tham khảo:</h5>
+                            <ul>
+                                <li>La Roche-Posay Effaclar Purifying Foaming Gel</li>
+                                <li>CeraVe Hydrating Facial Cleanser</li>
+                                <li>Bioderma Sébium Gel Moussant</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn btn-veriglow mt-2">Xem các sản phẩm làm sạch tại VeriGlow</a>
+                    </div>
+                </article>
+
+                <!-- Bài 8 -->
+                <article class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=1000&auto=format&fit=crop" alt="Dưỡng ẩm cho da mụn" class="blog-image">
+                    <div class="blog-content">
+                        <span class="keyword-tag"><i class="fas fa-tag me-1"></i> da mụn có nên dưỡng ẩm</span>
+                        <h2 class="blog-title brand-font">Bài 8. Da mụn có nên dưỡng ẩm không?</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> 08/09/2026</span>
+                            <span><i class="far fa-user"></i> Admin VeriGlow</span>
+                        </div>
+                        <p>Nhiều người lầm tưởng da mụn thì phải để da khô ráo. Thực tế, da mụn vẫn cần được moisturizer (Dưỡng ẩm). Chăm sóc da không nên chỉ tập trung vào việc dùng treatment (Đặc trị) để giảm dầu hoặc xử lý mụn mà còn cần bổ sung nước để duy trì hàng rào bảo vệ da khỏe mạnh.</p>
+                        <p>Người dùng nên lựa chọn sản phẩm kem dưỡng mỏng nhẹ (như dạng gel hoặc lotion), có nhãn non-comedogenic (Không gây bít tắc lỗ chân lông) phù hợp với tình trạng da và tránh sử dụng quá nhiều sản phẩm cùng lúc gây bí bách.</p>
+                        
+                        <div class="product-ref-box">
+                            <h5><i class="fas fa-box-open me-2"></i> Sản phẩm tham khảo:</h5>
+                            <ul>
+                                <li>La Roche-Posay Cicaplast Baume B5+</li>
+                                <li>CeraVe Moisturizing Cream (Kem dưỡng ẩm)</li>
+                                <li>Dear, Klairs Midnight Blue Calming Cream (Kem dưỡng làm dịu)</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn btn-veriglow mt-2">Khám phá sản phẩm dưỡng ẩm phù hợp tại VeriGlow</a>
+                    </div>
+                </article>
+
+                <!-- Bài 9 -->
+                <article class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=1000&auto=format&fit=crop" alt="La Roche-Posay" class="blog-image">
+                    <div class="blog-content">
+                        <span class="keyword-tag"><i class="fas fa-tag me-1"></i> La Roche-Posay da dầu mụn</span>
+                        <h2 class="blog-title brand-font">Bài 9. La Roche-Posay có phù hợp với da dầu mụn không?</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> 05/09/2026</span>
+                            <span><i class="far fa-user"></i> Reviewer VeriGlow</span>
+                        </div>
+                        <p>Dược mỹ phẩm La Roche-Posay từ Pháp có rất nhiều sản phẩm thuộc dòng EFFACLAR được phát triển chuyên biệt cho da dầu và da dễ bị mụn. Dòng này cung cấp đầy đủ các sản phẩm từ làm sạch đến chăm sóc da mụn chuyên sâu.</p>
+                        <p>Ví dụ tiêu biểu nhất là EFFACLAR Purifying Foaming Gel, luôn được giới thiệu là sản phẩm làm sạch dịu nhẹ, cân bằng độ pH và hỗ trợ giảm bã nhờn tối ưu cho da dầu mụn nhạy cảm.</p>
+                        
+                        <div class="product-ref-box">
+                            <h5><i class="fas fa-box-open me-2"></i> Sản phẩm tham khảo:</h5>
+                            <ul>
+                                <li>Effaclar Purifying Foaming Gel</li>
+                                <li>Effaclar Ultra Concentrated Serum (Tinh chất cô đặc)</li>
+                                <li>Micellar Water Ultra Reactive Skin (Nước tẩy trang hạt Micelle)</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn btn-veriglow mt-2">Khám phá sản phẩm La Roche-Posay tại VeriGlow</a>
+                    </div>
+                </article>
+
+                <!-- Bài 10 -->
+                <article class="blog-post">
+                    <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=1000&auto=format&fit=crop" alt="Skincare sinh viên" class="blog-image">
+                    <div class="blog-content">
+                        <span class="keyword-tag"><i class="fas fa-tag me-1"></i> skincare cho sinh viên</span>
+                        <h2 class="blog-title brand-font">Bài 10. Routine chăm sóc da đơn giản, tiết kiệm cho sinh viên</h2>
+                        <div class="blog-meta">
+                            <span><i class="far fa-calendar-alt"></i> 01/09/2026</span>
+                            <span><i class="far fa-user"></i> Admin VeriGlow</span>
+                        </div>
+                        <p>Sinh viên thường bận rộn và có ngân sách hạn chế, vì vậy có thể bắt đầu với một routine (Quy trình dưỡng da) tối giản nhưng vẫn đảm bảo hiệu quả làm sạch và bảo vệ.</p>
+                        
+                        <div class="row mt-4 mb-4">
+                            <div class="col-md-6 mb-3 mb-md-0">
+                                <div class="bg-light p-3 rounded h-100 border-start border-4 border-warning">
+                                    <h6 class="fw-bold text-dark"><i class="fas fa-sun text-warning me-2"></i> Buổi sáng:</h6>
+                                    <p class="mb-0 small">Làm sạch → Dưỡng ẩm nhẹ → Chống nắng (Bắt buộc).</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="bg-light p-3 rounded h-100 border-start border-4 border-info">
+                                    <h6 class="fw-bold text-dark"><i class="fas fa-moon text-info me-2"></i> Buổi tối:</h6>
+                                    <p class="mb-0 small">Tẩy trang (Makeup remover) → Làm sạch (Cleanser) → Dưỡng ẩm phục hồi.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p>Nếu có vấn đề da cụ thể (như mụn, thâm), sinh viên có thể bổ sung 1-2 sản phẩm chuyên biệt (như serum, spot treatment - Kem chấm mụn) sau khi đã tìm hiểu thật kỹ về thành phần và cách sử dụng.</p>
+                        
+                        <div class="product-ref-box">
+                            <h5><i class="fas fa-box-open me-2"></i> Sản phẩm tham khảo ngon-bổ-rẻ:</h5>
+                            <ul>
+                                <li>CeraVe Hydrating Facial Cleanser (Sữa rửa mặt chai lớn tiết kiệm)</li>
+                                <li>Dear, Klairs Rich Moist Soothing Cream (Kem dưỡng ẩm lành tính)</li>
+                                <li>L’Oréal UV Defender Matte & Fresh SPF50+ (Chống nắng giá hạt dẻ)</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn btn-veriglow mt-2">Tìm routine phù hợp với làn da của bạn tại VeriGlow</a>
+                    </div>
+                </article>
+
+                <!-- Phân trang -->
+                <nav aria-label="Page navigation" class="mt-5">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item disabled">
+                            <a class="page-link text-muted" href="#" tabindex="-1" aria-disabled="true">Trang trước</a>
+                        </li>
+                        <li class="page-item active" aria-current="page"><a class="page-link bg-pink-main border-pink-main text-white" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link text-pink-dark" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link text-pink-dark" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link text-pink-dark" href="#">Trang sau</a>
+                        </li>
+                    </ul>
+                </nav>
+
+            </div>
+
+            <!-- Cột Phải: Sidebar -->
+            <div class="col-lg-4 mt-5 mt-lg-0">
+                
+                <!-- Tìm kiếm -->
+                <div class="sidebar-widget">
+                    <h4 class="widget-title">Tìm Kiếm Bài Viết</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control bg-light border-0" placeholder="Nhập từ khóa...">
+                        <button class="btn btn-veriglow" type="button"><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+
+                <!-- Về VeriGlow -->
+                <div class="sidebar-widget text-center">
+                    <h4 class="widget-title">Về VeriGlow</h4>
+                    <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=400&auto=format&fit=crop" alt="VeriGlow" class="img-fluid rounded-circle mb-3 border border-3 border-pink-light" style="width: 120px; height: 120px; object-fit: cover;">
+                    <p class="text-muted small">VeriGlow không chỉ là cửa hàng mỹ phẩm, chúng tôi là người bạn đồng hành mang đến kiến thức Skincare (Chăm sóc da) khoa học, minh bạch, giúp bạn tự tin tỏa sáng với vẻ đẹp nguyên bản.</p>
+                </div>
+
+                <!-- Danh mục -->
+                <div class="sidebar-widget">
+                    <h4 class="widget-title">Danh Mục</h4>
+                    <ul class="category-list">
+                        <li><a href="#">Kiến thức Skincare (Chăm sóc da) <span>(45)</span></a></li>
+                        <li><a href="#">Review Sản Phẩm <span>(32)</span></a></li>
+                        <li><a href="#">Chăm sóc Body (Cơ thể) <span>(18)</span></a></li>
+                        <li><a href="#">Trang Điểm (Makeup) <span>(24)</span></a></li>
+                        <li><a href="#">Bí quyết Trị Mụn <span>(15)</span></a></li>
+                    </ul>
+                </div>
+
+                <!-- Từ khóa phổ biến -->
+                <div class="sidebar-widget">
+                    <h4 class="widget-title">Từ Khóa Phổ Biến</h4>
+                    <div class="tag-cloud">
+                        <a href="#">AHA/BHA</a>
+                        <a href="#">Niacinamide</a>
+                        <a href="#">Da dầu mụn</a>
+                        <a href="#">Kem chống nắng</a>
+                        <a href="#">La Roche-Posay</a>
+                        <a href="#">Routine cơ bản</a>
+                        <a href="#">Dưỡng ẩm</a>
+                        <a href="#">Da nhạy cảm</a>
+                        <a href="#">Vitamin C</a>
+                        <a href="#">Tẩy tế bào chết</a>
+                    </div>
+                </div>
+
+                <!-- Banner quảng cáo -->
+                <div class="sidebar-widget p-0 overflow-hidden border-0 bg-transparent">
+                    <div class="position-relative">
+                        <img src="https://images.unsplash.com/photo-1629198688000-71f23e745b6e?q=80&w=600&auto=format&fit=crop" alt="Khuyến mãi" class="img-fluid rounded-4">
+                        <div class="position-absolute top-50 start-50 translate-middle w-100 text-center p-3" style="background: rgba(255,255,255,0.85);">
+                            <h5 class="fw-bold text-pink-dark mb-1">DEAL ĐỘC QUYỀN</h5>
+                            <p class="small text-dark mb-2">Giảm giá 20% cho tân sinh viên</p>
+                            <button class="btn btn-sm btn-veriglow">Mua Ngay</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="brand-font text-pink-dark fw-bold mb-3"><i class="fas fa-leaf text-pink-main me-2"></i>VeriGlow</h4>
+                    <p class="text-muted small pe-lg-4">Uy tín tạo niềm tin, Minh bạch dựng vẻ đẹp. Hệ thống bán lẻ mỹ phẩm chính hãng hàng đầu, cung cấp giải pháp chăm sóc da an toàn và hiệu quả.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-pink-main fs-5"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-pink-main fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-pink-main fs-5"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0 footer-links">
+                    <h5 class="footer-heading fs-6">Về Chúng Tôi</h5>
+                    <a href="#">Câu chuyện VeriGlow</a>
+                    <a href="#">Blog Làm Đẹp</a>
+                    <a href="#">Tuyển dụng</a>
+                    <a href="#">Liên hệ</a>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0 footer-links">
+                    <h5 class="footer-heading fs-6">Hỗ Trợ Khách Hàng</h5>
+                    <a href="#">Chính sách đổi trả</a>
+                    <a href="#">Chính sách bảo mật</a>
+                    <a href="#">Hướng dẫn mua hàng</a>
+                    <a href="#">Câu hỏi thường gặp</a>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="footer-heading fs-6">Đăng Ký Nhận Tin</h5>
+                    <p class="text-muted small">Nhận ngay voucher 10% và cập nhật kiến thức Skincare mới nhất.</p>
+                    <div class="input-group mt-3">
+                        <input type="email" class="form-control" placeholder="Email của bạn...">
+                        <button class="btn btn-veriglow" type="button"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 pt-4 border-top">
+                <div class="col-12 text-center text-muted small">
+                    <p class="mb-0">&copy; 2026 VeriGlow Cosmetics. Đã đăng ký Bản quyền.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Thư viện JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

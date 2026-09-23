@@ -1,0 +1,574 @@
+<!-- FILE: about.html -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Về Chúng Tôi | VeriGlow Cosmetics</title>
+
+    <!-- Thư viện CSS Bootstrap & FontAwesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&family=Playfair+Display:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS Tùy chỉnh -->
+    <style>
+        :root {
+            --vg-pink-main: #f06292;
+            --vg-pink-light: #f8bbd0;
+            --vg-pink-lightest: #fce4ec;
+            --vg-pink-soft: #ffb6c1;
+            --vg-pink-dark: #d81b60;
+            --text-main: #333333;
+            --text-muted: #6c757d;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #fff;
+            color: var(--text-main);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        .brand-font {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Utility Classes */
+        .text-pink-main { color: var(--vg-pink-main) !important; }
+        .text-pink-dark { color: var(--vg-pink-dark) !important; }
+        .bg-pink-lightest { background-color: var(--vg-pink-lightest) !important; }
+        .bg-pink-main { background-color: var(--vg-pink-main) !important; color: white; }
+
+        /* Nút bấm (Button) */
+        .btn-veriglow {
+            background-color: var(--vg-pink-main);
+            color: white;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 30px;
+            border: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(240, 98, 146, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+        .btn-veriglow:hover {
+            background-color: var(--vg-pink-dark);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(216, 27, 96, 0.3);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 15px 0;
+            backdrop-filter: blur(10px);
+        }
+        .nav-link {
+            font-weight: 700;
+            color: var(--text-main);
+            margin: 0 12px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--vg-pink-dark) !important;
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .about-hero {
+            position: relative;
+            background: url('https://images.unsplash.com/photo-1616683693504-3ea7e9ad6fec?q=80&w=1920&auto=format&fit=crop') no-repeat center center;
+            background-size: cover;
+            padding: 120px 0;
+            text-align: center;
+        }
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(252, 228, 236, 0.85) 0%, rgba(248, 187, 208, 0.85) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        .hero-subtitle {
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--vg-pink-dark);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        .story-img-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .story-img-wrapper::after {
+            content: '';
+            position: absolute;
+            top: -20px; right: -20px; bottom: 20px; left: 20px;
+            border: 3px solid var(--vg-pink-light);
+            border-radius: 20px;
+            z-index: -1;
+        }
+
+        /* Core Values (Giá trị cốt lõi) */
+        .values-section {
+            background-color: var(--vg-pink-lightest);
+            padding: 90px 0;
+        }
+        .value-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: all 0.4s ease;
+            height: 100%;
+            border-bottom: 4px solid transparent;
+        }
+        .value-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--vg-pink-main);
+            box-shadow: 0 15px 35px rgba(240, 98, 146, 0.15);
+        }
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--vg-pink-lightest);
+            color: var(--vg-pink-dark);
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+        .value-card:hover .value-icon {
+            background: var(--vg-pink-main);
+            color: white;
+            transform: rotateY(360deg);
+        }
+
+        /* Timeline (Lịch sử hình thành) */
+        .timeline-section {
+            padding: 100px 0;
+        }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--vg-pink-light);
+            top: 0; bottom: 0; left: 50%;
+            margin-left: -2px;
+            border-radius: 2px;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+        .timeline-item.left { left: 0; }
+        .timeline-item.right { left: 50%; }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px; height: 20px;
+            right: -10px;
+            background-color: white;
+            border: 4px solid var(--vg-pink-main);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-item.right::after {
+            left: -10px;
+        }
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: white;
+            position: relative;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px solid var(--vg-pink-lightest);
+        }
+        .timeline-year {
+            color: var(--vg-pink-dark);
+            font-weight: 800;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Team Section */
+        .team-section {
+            background-color: #fcfcfc;
+            padding: 90px 0;
+        }
+        .team-card {
+            border: none;
+            background: transparent;
+            text-align: center;
+        }
+        .team-img-box {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid white;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .team-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .team-card:hover .team-img-box img {
+            transform: scale(1.1);
+        }
+        .team-social {
+            position: absolute;
+            bottom: -50px;
+            left: 0; right: 0;
+            background: rgba(240, 98, 146, 0.9);
+            padding: 10px 0;
+            transition: all 0.3s ease;
+        }
+        .team-card:hover .team-social {
+            bottom: 0;
+        }
+        .team-social a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #fff;
+            border-top: 1px solid #eaeaea;
+            padding: 70px 0 30px;
+        }
+        .footer-heading {
+            font-weight: 800;
+            color: var(--vg-pink-dark);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 1rem;
+        }
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: color 0.3s ease;
+            font-weight: 600;
+        }
+        .footer-links a:hover {
+            color: var(--vg-pink-main);
+            padding-left: 5px;
+        }
+
+        /* Reponsive Timeline */
+        @media screen and (max-width: 768px) {
+            .timeline::after { left: 31px; }
+            .timeline-item { width: 100%; padding-left: 70px; padding-right: 25px; }
+            .timeline-item.left::after, .timeline-item.right::after { left: 21px; }
+            .timeline-item.right { left: 0%; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand text-pink-dark brand-font fs-3 fw-bold" href="index.html">
+                <i class="fas fa-leaf text-pink-main me-2"></i>VeriGlow
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="products.html">Sản Phẩm</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog Làm Đẹp</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="about.html">Về Chúng Tôi</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Liên Hệ</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="#" class="text-dark fs-5"><i class="fas fa-search"></i></a>
+                    <a href="#" class="text-dark fs-5 position-relative">
+                        <i class="fas fa-shopping-bag text-pink-dark"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="container hero-content">
+            <span class="hero-subtitle animate__animated animate__fadeInDown">Câu chuyện của chúng tôi</span>
+            <h1 class="display-3 brand-font fw-bold text-dark mb-4 animate__animated animate__fadeInUp">
+                Đánh thức vẻ đẹp nguyên bản
+            </h1>
+            <p class="lead text-dark fw-bold mb-0 w-75 mx-auto animate__animated animate__fadeInUp animate__delay-1s">
+                VeriGlow không chỉ bán mỹ phẩm. Chúng tôi mang đến cho bạn sự thấu hiểu làn da, kiến thức skincare (chăm sóc da) khoa học và những sản phẩm an toàn nhất.
+            </p>
+        </div>
+    </section>
+
+    <!-- Câu Chuyện (Story) Section -->
+    <section class="story-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="story-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1556228720-1c2f6d0f6224?q=80&w=1000&auto=format&fit=crop" class="img-fluid" alt="Câu chuyện VeriGlow">
+                    </div>
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <h6 class="text-pink-main fw-bold text-uppercase mb-2">Khởi nguồn</h6>
+                    <h2 class="brand-font fw-bold text-dark mb-4">Từ trăn trở đến sứ mệnh (Mission) làm đẹp minh bạch</h2>
+                    <p class="mb-4 text-muted">
+                        Được thành lập vào năm 2020, VeriGlow bắt nguồn từ một trăn trở giản dị: Giữa hàng ngàn thương hiệu mỹ phẩm trên thị trường, làm sao để người tiêu dùng tìm được sản phẩm thực sự phù hợp và an toàn cho làn da của mình?
+                    </p>
+                    <p class="mb-4 text-muted">
+                        Chúng tôi tin rằng mọi làn da đều xứng đáng được nâng niu bằng sự thấu hiểu. Không cam kết những phép màu hão huyền, VeriGlow tập trung vào <strong>khoa học, sự minh bạch bảng thành phần</strong> và <strong>hiệu quả thực chứng</strong>. Chúng tôi tự hào phân phối chính hãng các thương hiệu dược mỹ phẩm hàng đầu thế giới như La Roche-Posay, Paula's Choice, Bioderma, CeraVe...
+                    </p>
+                    <ul class="list-unstyled mb-4">
+                        <li class="mb-2"><i class="fas fa-check-circle text-pink-main me-2"></i> 100% Sản phẩm chính hãng có nguồn gốc rõ ràng.</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-pink-main me-2"></i> Tư vấn dựa trên tình trạng da thực tế (Skin condition).</li>
+                        <li class="mb-2"><i class="fas fa-check-circle text-pink-main me-2"></i> Đồng hành cùng khách hàng trong suốt quá trình sử dụng.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Giá Trị Cốt Lõi (Core Values) -->
+    <section class="values-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h6 class="text-pink-dark fw-bold text-uppercase mb-2">Triết lý hoạt động</h6>
+                <h2 class="brand-font fw-bold text-dark">Giá Trị Cốt Lõi (Core Values)</h2>
+                <div class="mx-auto mt-3" style="width: 60px; height: 3px; background-color: var(--vg-pink-main);"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-search"></i></div>
+                        <h4 class="fw-bold mb-3 brand-font">Minh Bạch</h4>
+                        <p class="text-muted small mb-0">Rõ ràng trong nguồn gốc xuất xứ, bảng thành phần (ingredients) và công dụng thực tế của từng sản phẩm.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-flask"></i></div>
+                        <h4 class="fw-bold mb-3 brand-font">Khoa Học</h4>
+                        <p class="text-muted small mb-0">Lựa chọn sản phẩm dựa trên nền tảng da liễu học (dermatology) và các nghiên cứu lâm sàng uy tín.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-heart"></i></div>
+                        <h4 class="fw-bold mb-3 brand-font">Thấu Hiểu</h4>
+                        <p class="text-muted small mb-0">Lắng nghe để tư vấn phác đồ chăm sóc cá nhân hóa (personalized routine) phù hợp với từng cá nhân.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="value-card">
+                        <div class="value-icon"><i class="fas fa-leaf"></i></div>
+                        <h4 class="fw-bold mb-3 brand-font">Bền Vững</h4>
+                        <p class="text-muted small mb-0">Ưu tiên các thương hiệu có cam kết bảo vệ môi trường, cruelty-free (không thử nghiệm trên động vật).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lịch sử hình thành (Timeline) -->
+    <section class="timeline-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h6 class="text-pink-main fw-bold text-uppercase mb-2">Hành trình 6 năm</h6>
+                <h2 class="brand-font fw-bold text-dark">Dấu Ấn VeriGlow (Milestones)</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2020</div>
+                        <h5 class="fw-bold">Ra Mắt VeriGlow</h5>
+                        <p class="text-muted small mb-0">Cửa hàng mỹ phẩm nhỏ đầu tiên được mở tại TP.HCM với định hướng chuyên phân phối dược mỹ phẩm chính hãng.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2022</div>
+                        <h5 class="fw-bold">Đối Tác Chiến Lược</h5>
+                        <p class="text-muted small mb-0">Trở thành đại lý ủy quyền chính thức của L'Oréal Việt Nam (gồm La Roche-Posay, CeraVe, Vichy).</p>
+                    </div>
+                </div>
+                <div class="timeline-item left">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h5 class="fw-bold">Chuyển Đổi Số (Digital Transformation)</h5>
+                        <p class="text-muted small mb-0">Ra mắt website thương mại điện tử VeriGlow tích hợp công cụ phân tích da bằng AI giúp tư vấn online hiệu quả.</p>
+                    </div>
+                </div>
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2026</div>
+                        <h5 class="fw-bold">Hệ Thống Phủ Sóng</h5>
+                        <p class="text-muted small mb-0">Kỷ niệm 6 năm thành lập với 5 chi nhánh trải dài toàn quốc và đạt mốc 1 triệu khách hàng tin dùng.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Đội ngũ chuyên gia (Team) -->
+    <section class="team-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h6 class="text-pink-dark fw-bold text-uppercase mb-2">Những người đứng sau</h6>
+                <h2 class="brand-font fw-bold text-dark">Đội Ngũ Chuyên Gia (Our Experts)</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="card team-card">
+                        <div class="team-img-box">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop" alt="CEO">
+                            <div class="team-social d-flex justify-content-center">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-1">Nguyễn Lan Anh</h5>
+                        <p class="text-pink-main fw-bold small">Founder & CEO (Người sáng lập & Giám đốc)</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card team-card">
+                        <div class="team-img-box">
+                            <img src="https://images.unsplash.com/photo-1622253692010-333f2da6031d?q=80&w=600&auto=format&fit=crop" alt="Dermatologist">
+                            <div class="team-social d-flex justify-content-center">
+                                <a href="#"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-1">Dr. Trần Minh Quân</h5>
+                        <p class="text-pink-main fw-bold small">Chief Dermatologist (Bác sĩ Da liễu trưởng)</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card team-card">
+                        <div class="team-img-box">
+                            <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop" alt="Product Manager">
+                            <div class="team-social d-flex justify-content-center">
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-1">Lê Ngọc Mai</h5>
+                        <p class="text-pink-main fw-bold small">Product Manager (Quản lý sản phẩm)</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="card team-card">
+                        <div class="team-img-box">
+                            <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=600&auto=format&fit=crop" alt="Customer Success">
+                            <div class="team-social d-flex justify-content-center">
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                        <h5 class="fw-bold mb-1">Phạm Tùng Lâm</h5>
+                        <p class="text-pink-main fw-bold small">Customer Success (Chăm sóc khách hàng)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <h4 class="brand-font text-pink-dark fw-bold mb-3"><i class="fas fa-leaf text-pink-main me-2"></i>VeriGlow</h4>
+                    <p class="text-muted small pe-lg-4">Uy tín tạo niềm tin, Minh bạch dựng vẻ đẹp. Hệ thống bán lẻ mỹ phẩm chính hãng hàng đầu, cung cấp giải pháp skincare (chăm sóc da) an toàn và hiệu quả.</p>
+                    <div class="d-flex gap-3 mt-3">
+                        <a href="#" class="text-pink-main fs-5"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="text-pink-main fs-5"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-pink-main fs-5"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0 footer-links">
+                    <h5 class="footer-heading fs-6">Về Chúng Tôi</h5>
+                    <a href="about.html">Câu chuyện VeriGlow</a>
+                    <a href="blog.html">Blog Làm Đẹp</a>
+                    <a href="#">Tuyển dụng</a>
+                    <a href="contact.html">Liên hệ</a>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0 footer-links">
+                    <h5 class="footer-heading fs-6">Hỗ Trợ Khách Hàng</h5>
+                    <a href="#">Chính sách đổi trả</a>
+                    <a href="#">Chính sách bảo mật</a>
+                    <a href="#">Hướng dẫn mua hàng</a>
+                    <a href="#">FAQ (Câu hỏi thường gặp)</a>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="footer-heading fs-6">Đăng Ký Nhận Tin (Newsletter)</h5>
+                    <p class="text-muted small">Nhận ngay voucher 10% và cập nhật kiến thức Skincare mới nhất.</p>
+                    <div class="input-group mt-3">
+                        <input type="email" class="form-control" placeholder="Email của bạn...">
+                        <button class="btn btn-veriglow" style="padding: 10px 20px;" type="button"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5 pt-4 border-top">
+                <div class="col-12 text-center text-muted small">
+                    <p class="mb-0">&copy; 2026 VeriGlow Cosmetics. Đã đăng ký Bản quyền.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Thư viện JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

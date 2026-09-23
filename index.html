@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Veriglow - Hệ thống phân phối mỹ phẩm chính hãng. Uy tín tạo niềm tin, Minh bạch dựng vẻ đẹp.">
+    
+    <title>Veriglow | Uy tín tạo niềm tin, Minh bạch dựng vẻ đẹp</title>
+
+    <!-- Thư viện CSS bên ngoài -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+    
+    <!-- CSS Tùy chỉnh (Liên kết đến file style.css) -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- CSS Nội tuyến bổ trợ cấu trúc hiển thị nhanh -->
+    <style>
+        :root {
+            --vg-pink-light: #fff0f5; 
+            --vg-pink-soft: #ffb6c1; 
+            --vg-pink-main: #f06292;
+            --vg-pink-dark: #d81b60; 
+            --vg-text-dark: #333333;
+            --vg-text-gray: #6c757d;
+            --vg-transition: all 0.3s ease-in-out;
+        }
+
+        body { font-family: 'Nunito', sans-serif; color: var(--vg-text-dark); background-color: #fcfcfc; overflow-x: hidden; }
+        h1, h2, h3, h4, h5, h6, .brand-font { font-family: 'Playfair Display', serif; }
+        
+        .text-pink { color: var(--vg-pink-dark) !important; }
+        .bg-pink-light { background-color: var(--vg-pink-light) !important; }
+        .bg-pink-main { background-color: var(--vg-pink-main) !important; color: white; }
+
+        .btn-veriglow {
+            background: linear-gradient(45deg, var(--vg-pink-dark), var(--vg-pink-main));
+            color: white; border: none; border-radius: 30px; padding: 10px 25px; font-weight: 600;
+            transition: var(--vg-transition); box-shadow: 0 4px 15px rgba(216, 27, 96, 0.3);
+        }
+        .btn-veriglow:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(216, 27, 96, 0.5); color: white; }
+        
+        .btn-outline-veriglow {
+            border: 2px solid var(--vg-pink-dark); color: var(--vg-pink-dark); background: transparent;
+            border-radius: 30px; padding: 8px 20px; font-weight: 600; transition: var(--vg-transition);
+        }
+        .btn-outline-veriglow:hover { background: var(--vg-pink-dark); color: white; }
+
+        .topbar { font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+        .navbar { padding: 15px 0; background-color: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        .navbar-brand { font-size: 2rem; font-weight: 700; letter-spacing: 1px; }
+        .nav-link { font-weight: 600; text-transform: uppercase; font-size: 0.9rem; margin: 0 10px; position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0;
+            background-color: var(--vg-pink-dark); transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .hero-slider .carousel-item { height: 80vh; min-height: 500px; background-position: center; background-size: cover; position: relative; }
+        .hero-overlay { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(to right, rgba(255,240,245,0.9), rgba(255,255,255,0.4)); }
+        .hero-content { position: relative; z-index: 2; padding-top: 20vh; max-width: 600px; }
+        
+        .section-padding { padding: 80px 0; }
+        .section-title { position: relative; display: inline-block; margin-bottom: 40px; font-weight: 700; font-size: 2.5rem; }
+        .section-title::after { content: ''; position: absolute; width: 60%; height: 3px; bottom: -10px; left: 20%; background-color: var(--vg-pink-main); }
+
+        .product-card {
+            border: 1px solid #eee; border-radius: 15px; overflow: hidden; transition: var(--vg-transition);
+            background: #fff; position: relative; height: 100%; display: flex; flex-direction: column;
+        }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(0,0,0,0.08); border-color: var(--vg-pink-soft); }
+        .product-badge { position: absolute; top: 15px; left: 15px; background: var(--vg-pink-dark); color: white; padding: 5px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; z-index: 2; }
+        .product-img-wrap { position: relative; overflow: hidden; background-color: #fdfdfd; padding-top: 100%; }
+        .product-img-wrap img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; padding: 20px; transition: transform 0.5s; }
+        .product-card:hover .product-img-wrap img { transform: scale(1.1); }
+        .product-actions { position: absolute; bottom: -50px; left: 0; right: 0; display: flex; justify-content: center; gap: 10px; transition: var(--vg-transition); background: rgba(255,255,255,0.9); padding: 15px 0; z-index: 10; }
+        .product-card:hover .product-actions { bottom: 0; }
+        .action-btn { width: 40px; height: 40px; border-radius: 50%; background: white; color: var(--vg-pink-dark); border: 1px solid var(--vg-pink-dark); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: all 0.2s; }
+        .action-btn:hover { background: var(--vg-pink-dark); color: white; }
+        .product-info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .product-brand { font-size: 0.8rem; color: var(--vg-text-gray); text-transform: uppercase; font-weight: 700; margin-bottom: 5px; }
+        .product-title { font-size: 1.1rem; font-weight: 600; color: var(--vg-text-dark); margin-bottom: 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-decoration: none; }
+        .product-title:hover { color: var(--vg-pink-dark); }
+        .product-price { font-size: 1.2rem; font-weight: 800; color: var(--vg-pink-dark); margin-top: auto; }
+
+        .footer { background-color: var(--vg-pink-light); padding: 70px 0 20px; border-top: 5px solid var(--vg-pink-soft); }
+        .footer-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--vg-pink-dark); margin-bottom: 25px; }
+        .footer-links list-style { padding-left: 0; }
+        .footer-links li { margin-bottom: 12px; list-style: none; }
+        .footer-links a { color: var(--vg-text-gray); text-decoration: none; transition: 0.3s; }
+        .footer-links a:hover { color: var(--vg-pink-dark); padding-left: 5px; }
+        .social-icons a { display: inline-block; width: 40px; height: 40px; background: white; color: var(--vg-pink-main); border-radius: 50%; text-align: center; line-height: 40px; margin-right: 10px; transition: 0.3s; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .social-icons a:hover { background: var(--vg-pink-main); color: white; transform: translateY(-3px); }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================
+         PHẦN ĐẦU TRANG (HEADER & NAVIGATION)
+         ========================================== -->
+    <header>
+        <div class="topbar bg-pink-main text-white d-none d-md-block">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-start">
+                        <i class="fas fa-truck me-2"></i> Miễn phí vận chuyển toàn quốc cho đơn hàng từ 500k
+                    </div>
+                    <div class="col-md-6 text-end d-flex justify-content-end align-items-center">
+                        <span class="me-3"><i class="fas fa-phone-alt me-1"></i> Hotline: 1900 1234</span>
+                        <a href="javascript:void(0)" class="text-white text-decoration-none me-3"><i class="fab fa-facebook-f"></i></a>
+                        <a href="javascript:void(0)" class="text-white text-decoration-none me-3"><i class="fab fa-instagram"></i></a>
+                        
+                        <!-- Dropdown Ngôn Ngữ -->
+                        <div class="dropdown">
+                            <button class="btn btn-sm btn-outline-light dropdown-toggle border-0" type="button" id="langDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                VN (VND)
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="langDropdown">
+                                <li><a class="dropdown-item" href="javascript:void(0)">EN (USD)</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+            <div class="container">
+                <a class="navbar-brand text-pink brand-font" href="index.html">
+                    <i class="fas fa-leaf text-pink-main me-2"></i>Veriglow
+                </a>
+                
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                        <li class="nav-item"><a class="nav-link active text-pink" href="index.html">Trang Chủ</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="products.html" data-bs-toggle="dropdown">Sản Phẩm</a>
+                            <ul class="dropdown-menu border-0 shadow-lg p-3 rounded-4" style="min-width: 250px;">
+                                <li><h6 class="dropdown-header text-pink-dark">Theo Thương Hiệu</h6></li>
+                                <li><a class="dropdown-item" href="products.html?brand=larocheposay">La Roche-Posay (Dược mỹ phẩm)</a></li>
+                                <li><a class="dropdown-item" href="products.html?brand=loreal">L’Oréal Paris (Toàn diện)</a></li>
+                                <li><a class="dropdown-item" href="products.html?brand=cocoon">Cocoon (Thuần chay)</a></li>
+                                <li><a class="dropdown-item" href="products.html?brand=anessa">Anessa (Chống nắng)</a></li>
+                                <li><a class="dropdown-item" href="products.html?brand=cerave">CeraVe (Phục hồi)</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item text-pink-main text-center fw-bold" href="products.html">Xem Tất Cả Khác <i class="fas fa-arrow-right ms-1"></i></a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">Câu Chuyện Veriglow</a></li>
+                        <li class="nav-item"><a class="nav-link" href="blog.html">Blog Làm Đẹp</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Liên Hệ</a></li>
+                        <li class="nav-item"><a class="nav-link" href="compo.html">Compo Ưu Đãi</a></li>
+                    </ul>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <a href="javascript:void(0)" class="text-dark fs-5 position-relative" data-bs-toggle="modal" data-bs-target="#searchModal">
+                            <i class="fas fa-search hover-pink"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="text-dark fs-5 position-relative" data-bs-toggle="modal" data-bs-target="#loginModal">
+                            <i class="far fa-user hover-pink"></i>
+                        </a>
+                        <a href="javascript:void(0)" class="text-dark fs-5 position-relative" data-bs-toggle="modal" data-bs-target="#cartModal">
+                            <i class="fas fa-shopping-bag hover-pink"></i>
+                            <span id="cart-badge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.6rem;">
+                                0
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ==========================================
+         BĂNG CHUYỀN HERO (HERO SLIDER)
+         ========================================== -->
+    <section id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+        </div>
+        
+        <div class="carousel-inner hero-slider">
+            <div class="carousel-item active" style="background-image: url('images/banner-1.jpg'); background-color: var(--vg-pink-light);">
+                <div class="hero-overlay"></div>
+                <div class="container h-100 position-relative">
+                    <div class="hero-content animate__animated animate__fadeInLeft">
+                        <h4 class="text-pink-main mb-3 fw-bold text-uppercase tracking-wide">Chào mừng đến với Veriglow</h4>
+                        <h1 class="display-3 fw-bold text-dark mb-4 brand-font">Uy Tín Tạo Niềm Tin <br><span class="text-pink">Minh Bạch Dựng Vẻ Đẹp</span></h1>
+                        <p class="lead text-muted mb-5">Hệ thống phân phối mỹ phẩm chính hãng 100%. Nơi khởi nguồn cho làn da rạng rỡ, khỏe mạnh từ sâu bên trong.</p>
+                        <div class="d-flex gap-3">
+                            <a href="products.html" class="btn btn-veriglow btn-lg">Mua Sắm Ngay</a>
+                            <a href="about.html" class="btn btn-outline-veriglow btn-lg">Tìm Hiểu Thêm</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-item" style="background-image: url('images/banner-2.jpg'); background-color: #e0f2f1;">
+                <div class="hero-overlay" style="background: linear-gradient(to right, rgba(224,242,241,0.9), rgba(255,255,255,0.4));"></div>
+                <div class="container h-100 position-relative">
+                    <div class="hero-content animate__animated animate__fadeInUp">
+                        <h4 class="text-success mb-3 fw-bold text-uppercase">Dược Mỹ Phẩm Hàng Đầu</h4>
+                        <h1 class="display-3 fw-bold text-dark mb-4 brand-font">Phục Hồi Làn Da <br>Cùng <span class="text-success">La Roche-Posay</span></h1>
+                        <p class="lead text-muted mb-5">Khám phá sức mạnh từ Cicaplast Baume B5+ và Anthelios UVmune 400. Được khuyên dùng bởi hơn 90.000 chuyên gia da liễu.</p>
+                        <a href="products.html?brand=larocheposay" class="btn btn-veriglow btn-lg" style="background: #20c997;">Khám Phá La Roche-Posay</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-item" style="background-image: url('images/banner-3.jpg'); background-color: #fff3e0;">
+                <div class="hero-overlay" style="background: linear-gradient(to right, rgba(255,243,224,0.9), rgba(255,255,255,0.4));"></div>
+                <div class="container h-100 position-relative">
+                    <div class="hero-content animate__animated animate__fadeInRight">
+                        <h4 class="text-warning mb-3 fw-bold text-uppercase">Mỹ Phẩm Thuần Chay Việt</h4>
+                        <h1 class="display-3 fw-bold text-dark mb-4 brand-font">Vẻ Đẹp Nguyên Bản <br>Từ <span class="text-warning text-darken">Cocoon</span></h1>
+                        <p class="lead text-muted mb-5">Đánh thức làn da sáng mịn với tinh chất Cà Phê Đắk Lắk và Nước hoa hồng Nghệ Hưng Yên 100% thuần chay.</p>
+                        <a href="products.html?brand=cocoon" class="btn btn-veriglow btn-lg" style="background: #ffb300;">Trải Nghiệm Cocoon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon bg-pink-dark rounded-circle p-3" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon bg-pink-dark rounded-circle p-3" aria-hidden="true"></span>
+        </button>
+    </section>
+
+    <!-- ==========================================
+         DẢI THÔNG TIN DỊCH VỤ
+         ========================================== -->
+    <section class="py-5 bg-white border-bottom">
+        <div class="container">
+            <div class="row g-4 text-center">
+                <div class="col-md-3 col-6">
+                    <div class="p-3 border rounded-4 hover-shadow transition">
+                        <i class="fas fa-check-circle text-pink-main fs-1 mb-3"></i>
+                        <h5 class="fw-bold mb-1">Hàng Chính Hãng</h5>
+                        <p class="text-muted small mb-0">Cam kết 100% minh bạch</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="p-3 border rounded-4 hover-shadow transition">
+                        <i class="fas fa-shipping-fast text-pink-main fs-1 mb-3"></i>
+                        <h5 class="fw-bold mb-1">Giao Tốc Độ</h5>
+                        <p class="text-muted small mb-0">Hỏa tốc trong vòng 2H</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="p-3 border rounded-4 hover-shadow transition">
+                        <i class="fas fa-undo-alt text-pink-main fs-1 mb-3"></i>
+                        <h5 class="fw-bold mb-1">Đổi Trả Dễ Dàng</h5>
+                        <p class="text-muted small mb-0">Hỗ trợ 7 ngày miễn phí</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="p-3 border rounded-4 hover-shadow transition">
+                        <i class="fas fa-headset text-pink-main fs-1 mb-3"></i>
+                        <h5 class="fw-bold mb-1">Tư Vấn 24/7</h5>
+                        <p class="text-muted small mb-0">Đội ngũ chuyên gia da liễu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         DANH MỤC NỔI BẬT
+         ========================================== -->
+    <section class="section-padding bg-pink-light">
+        <div class="container text-center">
+            <h2 class="section-title text-pink-dark">Khám Phá Theo Nhu Cầu</h2>
+            <p class="text-muted mb-5 max-w-700 mx-auto">Veriglow mang đến các giải pháp chăm sóc toàn diện từ những thương hiệu mỹ phẩm uy tín nhất thế giới, đáp ứng mọi loại da và tình trạng da.</p>
+            
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="products.html?category=sunscreen" class="text-decoration-none">
+                        <div class="bg-white p-4 rounded-circle shadow-sm mb-3 mx-auto hover-pink-bg transition d-flex align-items-center justify-content-center" style="width: 120px; height: 120px;">
+                            <img src="images/cat-sunscreen.png" alt="Chống Nắng" class="img-fluid" style="max-height: 60px;">
+                        </div>
+                        <h6 class="text-dark fw-bold">Chống Nắng</h6>
+                        <small class="text-muted">Anessa, La Roche-Posay</small>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="products.html?category=cleanser" class="text-decoration-none">
+                        <div class="bg-white p-4 rounded-circle shadow-sm mb-3 mx-auto hover-pink-bg transition d-flex align-items-center justify-content-center" style="width: 120px; height: 120px;">
+                            <img src="images/cat-cleanser.png" alt="Làm Sạch" class="img-fluid" style="max-height: 60px;">
+                        </div>
+                        <h6 class="text-dark fw-bold">Làm Sạch Da</h6>
+                        <small class="text-muted">Bioderma, CeraVe</small>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="products.html?category=serum" class="text-decoration-none">
+                        <div class="bg-white p-4 rounded-circle shadow-sm mb-3 mx-auto hover-pink-bg transition d-flex align-items-center justify-content-center" style="width: 120px; height: 120px;">
+                            <img src="images/cat-serum.png" alt="Tinh Chất" class="img-fluid" style="max-height: 60px;">
+                        </div>
+                        <h6 class="text-dark fw-bold">Tinh Chất (Serum)</h6>
+                        <small class="text-muted">L'Oréal, Klairs</small>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="products.html?category=treatment" class="text-decoration-none">
+                        <div class="bg-white p-4 rounded-circle shadow-sm mb-3 mx-auto hover-pink-bg transition d-flex align-items-center justify-content-center" style="width: 120px; height: 120px;">
+                            <img src="images/cat-treatment.png" alt="Đặc Trị" class="img-fluid" style="max-height: 60px;">
+                        </div>
+                        <h6 class="text-dark fw-bold">Dược Đặc Trị</h6>
+                        <small class="text-muted">Paula's Choice</small>
+                    </a>
+                </div>
+                <div class="col-lg-2 col-md-4 col-6">
+                    <a href="products.html?category=makeup" class="text-decoration-none">
+                        <div class="bg-white p-4 rounded-circle shadow-sm mb-3 mx-auto hover-pink-bg transition d-flex align-items-center justify-content-center" style="width: 120px; height: 120px;">
+                            <img src="images/cat-makeup.png" alt="Trang Điểm" class="img-fluid" style="max-height: 60px;">
+                        </div>
+                        <h6 class="text-dark fw-bold">Trang Điểm</h6>
+                        <small class="text-muted">Maybelline, Innisfree</small>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         KHU VỰC SẢN PHẨM NỔI BẬT
+         ========================================== -->
+    <section id="featured-products" class="section-padding bg-white">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5">
+                <div>
+                    <h2 class="section-title text-pink-dark mb-0">Top Sản Phẩm Yêu Thích</h2>
+                    <p class="text-muted mt-2">Được chọn lọc khắt khe dựa trên phương châm "Minh bạch dựng vẻ đẹp".</p>
+                </div>
+                <a href="products.html" class="btn btn-outline-veriglow d-none d-md-inline-block">Xem Toàn Bộ <i class="fas fa-arrow-right ms-2"></i></a>
+            </div>
+
+            <ul class="nav nav-pills mb-4 justify-content-center gap-2 border-bottom pb-3" id="productTab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#tab-bestseller" type="button">Bán Chạy Nhất</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#tab-laroche" type="button">La Roche-Posay</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#tab-cocoon" type="button">Cocoon</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link rounded-pill px-4" data-bs-toggle="pill" data-bs-target="#tab-paula" type="button">Paula’s Choice</button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="productTabContent">
+                <!-- Vùng chứa sản phẩm - JavaScript sẽ chèn dữ liệu động vào <div class="row g-4"> -->
+                <div class="tab-pane fade show active" id="tab-bestseller" role="tabpanel">
+                    <div class="row g-4">
+                        <!-- Cấu trúc tĩnh hiển thị tạm trước khi JS load -->
+                        <div class="col-12 text-center text-muted py-5">
+                            <div class="spinner-border text-pink-main" role="status"></div>
+                            <p class="mt-2">Đang tải sản phẩm...</p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-5 d-block d-md-none">
+                        <a href="products.html" class="btn btn-veriglow w-100">Xem Toàn Bộ Sản Phẩm</a>
+                    </div>
+                </div> 
+                <div class="tab-pane fade" id="tab-laroche" role="tabpanel"><div class="row g-4"></div></div>
+                <div class="tab-pane fade" id="tab-cocoon" role="tabpanel"><div class="row g-4"></div></div>
+                <div class="tab-pane fade" id="tab-paula" role="tabpanel"><div class="row g-4"></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BANNER KHUYẾN MÃI
+         ========================================== -->
+    <section class="py-5 text-white text-center position-relative" style="background: linear-gradient(135deg, #f06292 0%, #d81b60 100%);">
+        <div class="container position-relative z-index-2 py-5">
+            <h2 class="display-4 fw-bold brand-font mb-4">SIÊU HỘI LÀM ĐẸP - GIẢM ĐẾN 50%</h2>
+            <p class="lead mb-4">Cơ hội sở hữu mỹ phẩm chính hãng với giá tốt nhất trong năm.</p>
+            <a href="products.html?sale=true" class="btn btn-light btn-lg text-pink-dark fw-bold rounded-pill px-5 shadow mt-2">SĂN DEAL NGAY</a>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         VỀ CHÚNG TÔI
+         ========================================== -->
+    <section id="about" class="section-padding bg-pink-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="position-relative">
+                        <img src="images/about-img-1.jpg" alt="Về Veriglow" class="img-fluid rounded-4 shadow-lg">
+                        <div class="position-absolute bottom-0 end-0 bg-white p-4 rounded-4 shadow m-n4 d-none d-md-block animate__animated animate__pulse animate__infinite">
+                            <h4 class="text-pink-main fw-bold brand-font">100%</h4>
+                            <p class="mb-0 text-muted small">Cam kết chính hãng</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 ps-lg-5">
+                    <h5 class="text-pink-main fw-bold text-uppercase tracking-wide mb-2">Câu chuyện của chúng tôi</h5>
+                    <h2 class="display-5 fw-bold brand-font text-dark mb-4">Uy Tín Tạo Niềm Tin,<br>Minh Bạch Dựng Vẻ Đẹp</h2>
+                    <p class="text-muted mb-4 lead">Tại Veriglow, chúng tôi tin rằng vẻ đẹp thực sự bắt nguồn từ sự minh bạch. Từ bảng thành phần rõ ràng đến nguồn gốc xuất xứ chính hãng, mọi thông tin đều được công khai.</p>
+                    <a href="about.html" class="btn btn-veriglow mt-2">Đọc Toàn Bộ Câu Chuyện</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         BLOG / GÓC LÀM ĐẸP
+         ========================================== -->
+    <section id="blog" class="section-padding bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="section-title text-pink-dark">Góc Làm Đẹp Cùng Chuyên Gia</h2>
+                <p class="text-muted">Cập nhật xu hướng skincare và các bài đánh giá chi tiết.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 hover-shadow transition">
+                        <img src="images/blog-1.jpg" class="card-img-top rounded-top-4" alt="Review La Roche Posay">
+                        <div class="card-body p-4">
+                            <span class="badge bg-pink-light text-pink-dark mb-2">Review Sản Phẩm</span>
+                            <h5 class="card-title fw-bold brand-font"><a href="blog-detail.html" class="text-dark text-decoration-none">Đánh giá kem chống nắng Anthelios UVmune 400</a></h5>
+                            <p class="card-text text-muted small mt-3">Phân tích công nghệ Mexoryl 400 và Airlicium trong siêu phẩm nhà La Roche-Posay dành riêng cho da dầu mụn mùa hè này.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 p-4 pt-0 d-flex justify-content-between align-items-center">
+                            <small class="text-muted">23/09/2026</small>
+                            <a href="blog-detail.html" class="text-pink-main fw-bold text-decoration-none small">Đọc tiếp <i class="fas fa-long-arrow-alt-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 hover-shadow transition">
+                        <img src="images/blog-2.jpg" class="card-img-top rounded-top-4" alt="Skincare routine">
+                        <div class="card-body p-4">
+                            <span class="badge bg-pink-light text-pink-dark mb-2">Kiến Thức Skincare</span>
+                            <h5 class="card-title fw-bold brand-font"><a href="blog-detail.html" class="text-dark text-decoration-none">Phục hồi hàng rào bảo vệ da với Ceramide từ CeraVe</a></h5>
+                            <p class="card-text text-muted small mt-3">Tại sao 3 Ceramides thiết yếu trong sữa rửa mặt và kem dưỡng CeraVe lại là "cứu tinh" cho làn da khô nhạy cảm?</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 p-4 pt-0 d-flex justify-content-between align-items-center">
+                            <small class="text-muted">20/09/2026</small>
+                            <a href="blog-detail.html" class="text-pink-main fw-bold text-decoration-none small">Đọc tiếp <i class="fas fa-long-arrow-alt-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card border-0 shadow-sm h-100 hover-shadow transition">
+                        <img src="images/blog-3.jpg" class="card-img-top rounded-top-4" alt="Vegan Cosmetics">
+                        <div class="card-body p-4">
+                            <span class="badge bg-pink-light text-pink-dark mb-2">Xu Hướng Bền Vững</span>
+                            <h5 class="card-title fw-bold brand-font"><a href="blog-detail.html" class="text-dark text-decoration-none">Vì sao mỹ phẩm thuần chay Cocoon gây sốt giới trẻ Việt?</a></h5>
+                            <p class="card-text text-muted small mt-3">Khám phá sức mạnh từ Cà phê Đắk Lắk và Bí đao trong việc làm sạch, trị mụn và nuôi dưỡng làn da khỏe đẹp nguyên bản.</p>
+                        </div>
+                        <div class="card-footer bg-white border-0 p-4 pt-0 d-flex justify-content-between align-items-center">
+                            <small class="text-muted">18/09/2026</small>
+                            <a href="blog-detail.html" class="text-pink-main fw-bold text-decoration-none small">Đọc tiếp <i class="fas fa-long-arrow-alt-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-5">
+                <a href="blog.html" class="btn btn-outline-veriglow">Xem Tất Cả Bài Viết</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         ĐĂNG KÝ NHẬN BẢN TIN (NEWSLETTER)
+         ========================================== -->
+    <section class="py-5 bg-pink-main text-white text-center">
+        <div class="container py-4">
+            <h3 class="fw-bold brand-font mb-3">Đăng Ký Nhận Bản Tin Từ Veriglow</h3>
+            <p class="mb-4 opacity-75 max-w-700 mx-auto">Nhận ngay mã giảm giá 10% cho đơn hàng đầu tiên và không bỏ lỡ bất kỳ xu hướng làm đẹp hay chương trình khuyến mãi nào!</p>
+            <form class="row justify-content-center">
+                <div class="col-md-6 col-lg-5">
+                    <div class="input-group mb-3 shadow-sm rounded-pill overflow-hidden">
+                        <input type="email" class="form-control border-0 p-3 ps-4" placeholder="Nhập địa chỉ email của bạn..." aria-label="Email" required>
+                        <button class="btn btn-dark text-white fw-bold px-4" type="submit">Đăng Ký Ngay</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ==========================================
+         CHÂN TRANG (FOOTER)
+         ========================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-4 col-md-6">
+                    <h3 class="brand-font text-pink-dark fw-bold mb-4"><i class="fas fa-leaf text-pink-main me-2"></i>Veriglow</h3>
+                    <p class="text-muted mb-4 pe-lg-4">Hệ thống phân phối mỹ phẩm chính hãng hàng đầu. Khởi nguồn từ slogan "Uy tín tạo niềm tin, Minh bạch dựng vẻ đẹp".</p>
+                    <div class="social-icons">
+                        <a href="javascript:void(0)"><i class="fab fa-facebook-f"></i></a>
+                        <a href="javascript:void(0)"><i class="fab fa-instagram"></i></a>
+                        <a href="javascript:void(0)"><i class="fab fa-tiktok"></i></a>
+                        <a href="javascript:void(0)"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-title">Danh Mục</h5>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="products.html?category=skincare">Dược Mỹ Phẩm</a></li>
+                        <li><a href="products.html?category=makeup">Trang Điểm (Makeup)</a></li>
+                        <li><a href="products.html?category=body">Chăm Sóc Cơ Thể</a></li>
+                        <li><a href="products.html?brand=cocoon">Mỹ Phẩm Thuần Chay</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-title">Hỗ Trợ Khách Hàng</h5>
+                    <ul class="footer-links list-unstyled">
+                        <li><a href="policy.html">Chính Sách Giao Hàng</a></li>
+                        <li><a href="return.html">Chính Sách Đổi Trả 7 Ngày</a></li>
+                        <li><a href="guide.html">Hướng Dẫn Đặt Hàng</a></li>
+                        <li><a href="privacy.html">Chính Sách Bảo Mật</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-title">Liên Hệ</h5>
+                    <ul class="list-unstyled text-muted mb-4">
+                        <li class="mb-2"><i class="fas fa-map-marker-alt text-pink-main me-2"></i> 123 Đường Sắc Đẹp, Quận 1, TP. HCM</li>
+                        <li class="mb-2"><i class="fas fa-phone-alt text-pink-main me-2"></i> Hotline: 1900 1234 (8h - 22h)</li>
+                        <li class="mb-2"><i class="fas fa-envelope text-pink-main me-2"></i> support@veriglow.vn</li>
+                    </ul>
+                    
+                    <h6 class="fw-bold text-dark mb-3 mt-4">Phương Thức Thanh Toán</h6>
+                    <div class="d-flex gap-3 align-items-center">
+                        <i class="fab fa-cc-visa fa-2x text-primary" title="Visa"></i>
+                        <i class="fab fa-cc-mastercard fa-2x text-danger" title="Mastercard"></i>
+                        <i class="fab fa-cc-paypal fa-2x text-info" title="PayPal"></i>
+                        <i class="fas fa-money-bill-wave fa-2x text-success" title="Tiền Mặt (COD)"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="mt-5 mb-4 border-secondary opacity-25">
+            <div class="text-center">
+                <p class="text-muted small mb-0">&copy; 2026 Veriglow Cosmetics. Bản quyền đã được bảo hộ.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================
+         CÁC HỘP THOẠI ẨN (MODALS)
+         ========================================== -->
+         
+    <!-- Modal Tìm Kiếm -->
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 rounded-4">
+                <div class="modal-body p-4">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="fw-bold brand-font text-pink-dark mb-0">Tìm kiếm sản phẩm</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="products.html" method="GET">
+                        <div class="input-group input-group-lg border rounded-pill overflow-hidden">
+                            <input type="text" name="q" class="form-control border-0 px-4" placeholder="Nhập tên mỹ phẩm, thương hiệu..." required>
+                            <button class="btn bg-pink-main text-white px-4" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                    <div class="mt-4">
+                        <small class="text-muted">Gợi ý tìm kiếm:</small>
+                        <div class="d-flex flex-wrap gap-2 mt-2">
+                            <a href="products.html?q=kemchongnang" class="badge bg-light text-dark border p-2 text-decoration-none">Kem chống nắng La Roche-Posay</a>
+                            <a href="products.html?q=taytrang" class="badge bg-light text-dark border p-2 text-decoration-none">Tẩy trang Bioderma</a>
+                            <a href="products.html?q=thuanchay" class="badge bg-light text-dark border p-2 text-decoration-none">Cocoon thuần chay</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Giỏ Hàng (Cart Modal) -->
+    <div class="modal fade" id="cartModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-fullscreen-sm-down modal-dialog-right" style="margin: 0 0 0 auto; max-width: 400px; height: 100%;">
+            <div class="modal-content border-0 h-100 rounded-0">
+                <div class="modal-header bg-pink-light border-0">
+                    <h5 class="modal-title fw-bold brand-font text-pink-dark">
+                        <i class="fas fa-shopping-bag me-2"></i> Giỏ Hàng (<span id="cart-header-count">0</span>)
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body" id="cart-body-content">
+                    <!-- HTML giỏ hàng sẽ được JS load tự động tại đây -->
+                </div>
+                
+                <div class="modal-footer flex-column bg-light border-0">
+                    <div class="d-flex justify-content-between w-100 mb-3">
+                        <span class="fw-bold">Tổng tiền tạm tính:</span>
+                        <span class="fw-bold text-pink-dark fs-5" id="cart-total-price">0đ</span>
+                    </div>
+                    <button type="button" class="btn btn-veriglow w-100 mb-2 py-2" onclick="processCheckout()">TIẾN HÀNH THANH TOÁN</button>
+                    <button type="button" class="btn btn-link text-dark w-100 text-decoration-none" data-bs-dismiss="modal">Tiếp tục mua sắm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hộp thoại Đăng nhập -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg rounded-4 overflow-hidden">
+                <div class="row g-0">
+                    <div class="col-md-5 bg-pink-light d-none d-md-flex align-items-center justify-content-center p-4">
+                        <div class="text-center">
+                            <h3 class="brand-font text-pink-dark mb-3">Veriglow</h3>
+                            <p class="small text-muted mb-0">"Uy tín tạo niềm tin, Minh bạch dựng vẻ đẹp"</p>
+                        </div>
+                    </div>
+                    <div class="col-md-7 p-4 p-md-5">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h4 class="fw-bold mb-0">Đăng Nhập</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold">Email / Số điện thoại</label>
+                                <input type="text" class="form-control p-2" placeholder="Nhập email của bạn" required>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label small fw-bold d-flex justify-content-between">
+                                    <span>Mật khẩu</span>
+                                    <a href="javascript:void(0)" class="text-pink-main text-decoration-none fw-normal">Quên mật khẩu?</a>
+                                </label>
+                                <input type="password" class="form-control p-2" placeholder="Nhập mật khẩu" required>
+                            </div>
+                            <button type="submit" class="btn btn-veriglow w-100 py-2 mb-3">Đăng Nhập</button>
+                            <div class="text-center small">
+                                Chưa có tài khoản? <a href="register.html" class="text-pink-dark fw-bold text-decoration-none">Đăng ký ngay</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle & JS Tùy Chỉnh Của Website -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
